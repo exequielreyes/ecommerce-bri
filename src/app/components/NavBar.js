@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function NavBar() {
 
@@ -59,6 +60,9 @@ const toggleMenu = () => {
           </li>
           <li className="text-black">
             <Link href="/contact">Contact</Link>
+          </li>
+          <li className="text-black">
+            <Link href="/shoppingcart">Cart</Link>
           </li>
         </ul>
         </div>

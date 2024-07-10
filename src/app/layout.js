@@ -2,6 +2,7 @@
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import localFont from 'next/font/local';
+import Head from "next/head";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,6 @@ const neueHaasGrotesk = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      
       <body className={neueHaasGrotesk.variable}>
         <NavBar />
 

@@ -2,6 +2,6 @@
 
 export default function About() {
   return (
-    <div>PRUEBA2</div>
+    <div>En mantenimiento</div>
   )
 }
