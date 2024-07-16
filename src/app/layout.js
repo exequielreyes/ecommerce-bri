@@ -1,9 +1,11 @@
+"use client";
+
 // import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import localFont from 'next/font/local';
 import Head from "next/head";
-
+import { CartProvider } from "@/context/CartContext";
 // const inter = Inter({ subsets: ["latin"] });
 
 
@@ -28,10 +30,16 @@ const neueHaasGrotesk = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
+      <Head>
+        <title>Brix Indumentary</title>
+      </Head>
       <body className={neueHaasGrotesk.variable}>
-        <NavBar />
-
-        {children}
+        
+        <CartProvider>
+          <NavBar/>
+          {children}
+        </CartProvider>
+        
       </body>
     </html>
   );

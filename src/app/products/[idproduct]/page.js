@@ -1,28 +1,65 @@
 // import PostCard from "@/app/components/PostCard"
-import Image from "next/image"
 
-async function loadProduct(id){
-    const res = await fetch(`https://fakestoreapi.com/products/${id}`)
-    const data = await res.json()
-    return data
+import Image from "next/image";
+import { useContext } from 'react';
+import { CartContext } from '../../../context/CartContext';
+import ProductPageClient from "../[idproduct]/ProductPageClient";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+async function loadProduct(id) {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch product');
+  }
+  const data = await res.json();
+  return data;
+}
+
+export default async function Page({ params }) {
+  const { idproduct } = params;
+
+  try {
+    const post = await loadProduct(idproduct);
+
+    return (
+      <div className="container mt-4">
+        <div className="row justify-content-center">
+          <div className="col-md-8">
+            <div className="card">
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <Image 
+                    src={post.image} 
+                    alt={post.title} 
+                    width={400} 
+                    height={300} 
+                    layout="responsive"
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h1 className="card-title">{post.title}</h1>
+                    <p className="card-text">{post.description}</p>
+                    
+                    <ProductPageClient product={post} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    return (
+      <div className="text-center">
+        <p>No se pueden recuperar los detalles del producto. Por favor, inténtelo de nuevo más tarde.</p>
+      </div>
+    );
+  }
 }
 
 
-async function Page({params}) {
-   const post =  await loadProduct(params.idproduct)
-  return (
-    <div className="max-w-xs rounded overflow-hidden shadow-lg m-4 bg-white">
-      <Image className="w-full" src={post.image} alt={post.title} width={400} height={300} layout="responsive" />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{post.title}</div>
-        <p className="text-gray-700 text-base line-clamp-3">{post.description}</p>
-      </div>
-      <div className="flex items-center justify-between px-6 pt-4 pb-2">
-        <span className="text-gray-900 font-bold">${post.price}</span>
-        <button class="btn btn-primary">Add to cart</button>
-      </div>
-    </div>
-  )
-}
 
-export default Page
+
+
