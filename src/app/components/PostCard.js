@@ -9,7 +9,7 @@ function PostCard({ product }) {
   const { addToCart } = useContext(CartContext);
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 bg-white ">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 bg-white transition duration-300 ease-in-out transform hover:scale-105 ">
       <Link href={`/products/${product.id}`}>
         <div>
           <Image 
