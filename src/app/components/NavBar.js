@@ -71,6 +71,9 @@ const toggleMenu = () => {
             <Link className="no-underline text-white hover:border-b-4 hover:py-2 hover:border-white" href="/about">Acerca de mi</Link>
           </li>
           <li className="text-xl font-semibold">
+            <Link className="no-underline text-white hover:border-b-4 hover:py-2 hover:border-white" href="/categories">Categoria</Link>
+          </li>
+          <li className="text-xl font-semibold">
             <Link className="no-underline text-white hover:border-b-4 hover:py-2 hover:border-white" href="/products">Productos</Link>
           </li>
           <li className="text-xl font-semibold">
