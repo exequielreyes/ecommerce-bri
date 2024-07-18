@@ -14,6 +14,8 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },fontFamily: {
         sans: ['var(--font-neue-haas-grotesk)', ...fontFamily.sans],
+      },colors: {
+        customBlue: '#161E2D',
       },
     },
   },
