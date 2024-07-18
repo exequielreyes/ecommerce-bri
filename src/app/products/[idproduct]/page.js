@@ -42,7 +42,6 @@ export default async function Page({ params }) {
               <p className="card-text mb-4">{post.description}</p>
               {/* <p className="text-xl font-semibold mb-4">${post.price}</p> */}
               <ProductPageClient product={post} />
-              
             </div>
           </div>
         </div>

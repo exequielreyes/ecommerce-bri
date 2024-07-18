@@ -43,11 +43,17 @@ const ProductPageClient = ({ product }) => {
     <div className="flex items-center justify-between px-6 pt-4 pb-2">
       <span className="h4">${product.price}</span>
       <button 
-        className={`btn ${added ? 'btn-success' : 'btn-secondary'} w-25 d-block d-sm-inline`} 
+        className={`btn ${added ? 'btn-success' : 'btn-secondary'} text-sm`}
+        style={{ minWidth: '120px' }} 
         onClick={handleAddToCart}
         disabled={added} // Deshabilitar el botón si ya se ha añadido
       >
         {added ? 'Añadido' : 'Añadir al carrito'}
+      </button>
+      <button 
+        className="btn btn-secondary ml-3 text-sm " 
+        style={{ minWidth: '120px' }}>
+        Comprar
       </button>
     </div>
   );

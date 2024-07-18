@@ -11,9 +11,9 @@ export default async function Home() {
   const products = await fetchProduct();
 
   return (
-     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold text-center my-8">Mas populares</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+     <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold text-center my-8">Más populares</h1>
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 justify-items-center">
         {products &&
           products.map((product) => (
             <PostCard key={product.id} product={product} />
