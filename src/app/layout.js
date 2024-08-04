@@ -1,11 +1,21 @@
 "use client";
 
-// import { Inter } from "next/font/google";
+ import { Urbanist } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import localFont from 'next/font/local';
 import Head from "next/head";
 import { CartProvider } from "@/context/CartContext";
+
+
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+
 // const inter = Inter({ subsets: ["latin"] });
 
 
@@ -16,24 +26,28 @@ import { CartProvider } from "@/context/CartContext";
 // };
 
 //configurando la fuente local
-const neueHaasGrotesk = localFont({
-  src: '../../public/fonts/NeueHaasGrotesk.woff2',
-  weight: 'normal',
-  style: 'normal',
-  display: 'swap',
-  variable: '--font-neue-haas-grotesk'
-});
+// const neueHaasGrotesk = localFont({
+//   src: '../../public/fonts/NeueHaasGrotesk.woff2',
+//   weight: 'normal',
+//   style: 'normal',
+//   display: 'swap',
+//   variable: '--font-neue-haas-grotesk'
+// });
+
+const urbanist = Urbanist({ subsets: ["latin"] });
+
 
 
 
 
 export default function RootLayout({ children }) {
   return (
+    <ClerkProvider>
     <html lang="es">
       <Head>
         <title>Brix Indumentary</title>
       </Head>
-      <body className={neueHaasGrotesk.variable}>
+      <body className={urbanist.className}>
         
         <CartProvider>
           <NavBar/>
@@ -42,5 +56,6 @@ export default function RootLayout({ children }) {
         
       </body>
     </html>
+    </ClerkProvider>
   );
 }
