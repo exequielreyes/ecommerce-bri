@@ -25,18 +25,36 @@ export default ProductPageClient;*/ //No borrar este codigo
 
 import { useContext, useState } from 'react';
 import { CartContext } from '../../../context/CartContext';
+import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ProductPageClient = ({ product }) => {
   const { addToCart } = useContext(CartContext);
   const [added, setAdded] = useState(false); // Estado para controlar el feedback visual
+  const { isSignedIn } = useUser();
+  const router = useRouter()
 
+
+//carrito
   const handleAddToCart = () => {
+    if (!isSignedIn) {
+      router.push('/sign-in');
+      return;
+    }
     addToCart(product);
     setAdded(true); // Marcar como añadido para cambiar el estilo del botón
     setTimeout(() => {
       setAdded(false); // Restablecer el estado después de un tiempo
     }, 1000); // Cambiar después de 1 segundo (ejemplo)
+  };
+
+  //compra
+  const handleBuyNow = () => {
+    if (!isSignedIn) {
+      router.push('/login');
+      return;
+    };
   };
 
   return (
@@ -52,7 +70,9 @@ const ProductPageClient = ({ product }) => {
       </button>
       <button 
         className="btn btn-secondary ml-3 text-sm " 
-        style={{ minWidth: '120px' }}>
+        style={{ minWidth: '120px' }}
+        onClick={handleBuyNow}
+        >
         Comprar
       </button>
     </div>
