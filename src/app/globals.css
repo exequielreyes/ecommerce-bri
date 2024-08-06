@@ -35,6 +35,24 @@ body {
   }
 }
 
+
+.cl-form {
+
+  border-radius: 10px; /* Cambia el borde del formulario */
+}
+
+.cl-button {
+  background-color: #f9f9f9; /* Cambia el color del botón */
+  color: #050505; /* Cambia el color del texto del botón */
+}
+
+.cl-button:hover {
+  background-color: #007bff;
+  color: #f9f9f9;
+}
+
+
+
 /*
 .card {
   border: 1px solid #e0e0e0;
