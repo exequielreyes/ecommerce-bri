@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
      <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center my-8">Más populares</h1>
+      <h1 className="text-2xl   my-8">Productos destacados</h1>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 justify-items-center">
         {products &&
           products.map((product) => (

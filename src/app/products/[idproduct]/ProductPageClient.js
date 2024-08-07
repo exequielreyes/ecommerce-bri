@@ -27,7 +27,9 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../../../context/CartContext';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import { Box, Button, Divider, Typography } from '@mui/material';
+import { ShoppingCart } from 'lucide-react';
 
 const ProductPageClient = ({ product }) => {
   const { addToCart } = useContext(CartContext);
@@ -58,24 +60,51 @@ const ProductPageClient = ({ product }) => {
   };
 
   return (
-    <div className="flex items-center justify-between px-6 pt-4 pb-2">
-      <span className="h4">${product.price}</span>
-      <button 
-        className={`btn ${added ? 'btn-success' : 'btn-secondary'} text-sm`}
-        style={{ minWidth: '120px' }} 
-        onClick={handleAddToCart}
-        disabled={added} // Deshabilitar el botón si ya se ha añadido
-      >
-        {added ? 'Añadido' : 'Añadir al carrito'}
-      </button>
-      <button 
-        className="btn btn-secondary ml-3 text-sm " 
-        style={{ minWidth: '120px' }}
-        onClick={handleBuyNow}
-        >
-        Comprar
-      </button>
-    </div>
+    //descomentar si no funciona el otro codigo
+    // <div className="flex items-center justify-between px-6 pt-4 pb-2">
+    //   <span className="h4">${product.price}</span>
+    //   <button 
+    //     className={`btn ${added ? 'btn-success' : 'btn-secondary'} text-sm`}
+    //     style={{ minWidth: '120px' }} 
+    //     onClick={handleAddToCart}
+    //     disabled={added} // Deshabilitar el botón si ya se ha añadido
+    //   >
+    //     {added ? 'Añadido' : 'Añadir al carrito'}
+    //   </button>
+    //   <button 
+    //     className="btn btn-secondary ml-3 text-sm " 
+    //     style={{ minWidth: '120px' }}
+    //     onClick={handleBuyNow}
+    //     >
+    //     Comprar
+    //   </button>
+    // </div>
+
+
+    <Box >
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Box sx={{ display: 'flex', gap: 4 }}>
+          <Button
+            variant={added ? 'contained' : 'outlined'}
+            color={added ? 'success' : 'primary'}
+            onClick={handleAddToCart}
+            disabled={added}
+            startIcon={<ShoppingCart />}
+            sx={{ flexGrow: 1 }}
+          >
+            {added ? 'Añadido' : 'Añadir al carrito'}
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleBuyNow}
+            sx={{ flexGrow: 1 }}
+          >
+            Comprar
+          </Button>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

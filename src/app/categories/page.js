@@ -1,12 +1,13 @@
 'use client'
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-
+import { Skeleton, Box, Typography, Grid } from '@mui/material';
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch categories from the API
@@ -25,8 +26,8 @@ const CategoriesPage = () => {
   }, []);
 
   useEffect(() => {
-    
     const fetchProducts = async () => {
+      setLoading(true);
       try {
         let res;
         if (selectedCategory) {
@@ -39,6 +40,8 @@ const CategoriesPage = () => {
         setProducts(data);
       } catch (error) {
         console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -46,9 +49,11 @@ const CategoriesPage = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">Filtrar por Categorías</h1>
-      <div className="mb-4">
+    <Box className="container mx-auto p-4">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Filtrar por Categorías
+      </Typography>
+      <Box mb={4}>
         <select
           className="border border-gray-300 p-2 rounded"
           onChange={(e) => setSelectedCategory(e.target.value)}
@@ -64,26 +69,43 @@ const CategoriesPage = () => {
             <option disabled>Cargando categorías...</option>
           )}
         </select>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {products.map((product) => (
-          <div key={product.id} className="border border-gray-200 rounded p-4">
-           <div className="relative w-full h-64 mb-4">
-              <Image
-                src={product.image}
-                alt={product.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded"
-              />
-            </div>
-            <h2 className="text-lg font-semibold">{product.title}</h2>
-            <p className="text-gray-600">{product.description}</p>
-            <p className="text-blue-500">{product.category}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+      </Box>
+      <Grid container spacing={4}>
+        {loading ? (
+          Array(6).fill().map((_, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box border={1} borderColor="grey.200" borderRadius="borderRadius" p={2}>
+                <Skeleton variant="rectangular" width="100%" height={200} />
+                <Box mt={2}>
+                  <Skeleton width="60%" height={30} />
+                  <Skeleton width="80%" height={20} />
+                  <Skeleton width="40%" height={20} />
+                </Box>
+              </Box>
+            </Grid>
+          ))
+        ) : (
+          products.map((product) => (
+            <Grid item xs={12} sm={6} md={4} key={product.id}>
+              <Box border={1} borderColor="grey.200" borderRadius="borderRadius" p={2}>
+                <Box position="relative" width="100%" height={200} mb={2}>
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded"
+                  />
+                </Box>
+                <Typography variant="h6">{product.title}</Typography>
+                <Typography color="textSecondary">{product.description}</Typography>
+                <Typography color="primary">{product.category}</Typography>
+              </Box>
+            </Grid>
+          )))
+        }
+      </Grid>
+    </Box>
   );
 };
 

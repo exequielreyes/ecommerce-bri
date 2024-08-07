@@ -1,4 +1,4 @@
-
+import { Skeleton, Box } from '@mui/material';
 
 function LoadingPage() {
   return (
