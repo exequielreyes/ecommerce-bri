@@ -22,17 +22,43 @@ export const CartProvider = ({ children }) => {
   
   
   
+  // const addToCart = (product) => {
+  //   const newProduct = { ...product, id: uuidv4() };
+  //   setCart((prevCart) => [...prevCart, newProduct]);
+  // };
+
   const addToCart = (product) => {
-    const newProduct = { ...product, id: uuidv4() };
-    setCart((prevCart) => [...prevCart, newProduct]);
+    setCart((prevCart) => {
+      const existingProductIndex = prevCart.findIndex(p => p.id === product.id);
+      if (existingProductIndex > -1) {
+        // Si el producto ya está en el carrito, actualiza la cantidad
+        const updatedCart = [...prevCart];
+        updatedCart[existingProductIndex].quantity += 1;
+        return updatedCart;
+      } else {
+        // Si el producto no está en el carrito, añádelo con cantidad inicial de 1
+        const newProduct = { ...product, id: uuidv4(), quantity: 1 };
+        return [...prevCart, newProduct];
+      }
+    });
   };
 
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter(product => product.id !== productId));
   };
+  
+  const updateQuantity = (productId, quantity) => {
+    setCart((prevCart) => 
+      prevCart.map(product => 
+        product.id === productId 
+          ? { ...product, quantity: parseInt(quantity, 10) } 
+          : product
+      )
+    );
+  };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );

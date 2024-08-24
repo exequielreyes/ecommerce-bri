@@ -2,7 +2,7 @@
 
 function ContactPage() {
   return (
-    <div>Contacto</div>
+    <div>En mantenimiento...</div>
   )
 }
 
