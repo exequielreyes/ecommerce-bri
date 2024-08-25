@@ -23,8 +23,9 @@ body {
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb)); */
-    color: black;
+    rgb(var(--background-start-rgb));
+  
+    color: black; */
     /* uso la fuente */
     @apply font-sans;
 }
