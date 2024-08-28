@@ -7,6 +7,7 @@ import { CartContext } from '../../context/CartContext';
 import Link from 'next/link';
 import { FaTrash, FaHeart, FaPlus, FaMinus, FaQuestionCircle, FaTruck, FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
+import { ChevronLeft } from 'lucide-react'; 
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, toggleFavorite } = useContext(CartContext);
@@ -42,19 +43,20 @@ const Cart = () => {
   };
 
   return (
-    <div className='container mx-auto p-4'>
-      {/* Botón para regresar a la página anterior */}
-      {cart.length > 0 && (
-        <div className='mb-4'>
-          <button 
-            onClick={handleGoBack} 
-            className='flex items-center text-black-500 hover:text-purple-700'
-          >
-            <FaArrowLeft className='text-lg mr-2' />
-            Regresar
-          </button>
-        </div>
-      )}
+      <div className='container mx-auto p-4'>
+        {/* Botón para regresar a la página anterior */}
+        {cart.length > 0 && (
+          <div className='mb-4'>
+            <button 
+              onClick={handleGoBack} 
+              className='flex items-center text-black hover:text-purple-700'
+            >
+              <ChevronLeft className='w-6 h-6' /> Regresar
+            </button>
+          </div>
+        )}
+      
+
 
       {/* Círculos de progreso */}
       <div className="flex justify-center space-x-6 mt-6 mb-4">
@@ -109,16 +111,17 @@ const Cart = () => {
         <div className='flex flex-col md:flex-row'>
           <div className='md:w-2/3 pr-4'>
             {cart.map((product) => (
-              <div key={product.id} className="bg-white shadow-lg rounded-lg mb-4 p-6 flex items-center">
+              <div key={product.id} className="bg-white shadow-lg rounded-lg mb-4 p-6 flex items-center justify-between">
                 {/* Imagen del producto */}
-                <img src={product.image} alt={product.title} className="w-24 h-24 object-cover rounded-md border border-gray-200"/>
-
+                <div className='flex-shrink-0'>
+                  <img src={product.image} alt={product.title} className="w-24 h-24 object-contain rounded-md border border-gray-200"/>
+                </div>
                 <div className="ml-6 flex-grow">
                   {/* Título del producto */}
                   <h5 className='text-lg font-semibold mb-2 text-gray-800'>{product.title}</h5>
 
                   {/* Precio del producto */}
-                  <p className="text-gray-600 mb-2">Precio: ${(product.price).toFixed(2)}</p>
+                  <p className="text-green-600 font-semibold mb-2">${(product.price).toFixed(2)}</p>
 
                   {/* Cantidad */}
                   <p className="text-sm font-semibold text-gray-700 mb-2">Cantidad:</p>
@@ -145,18 +148,18 @@ const Cart = () => {
                 </div>
 
                 {/* Botones de eliminar y favorito */}
-                <div className="ml-6 flex flex-col space-y-2">
+                <div className="ml-6 flex flex-col space-y-4">
                   <button 
                     className='text-gray-600 hover:text-red-500 transition-colors' 
                     onClick={() => removeFromCart(product.id)}
                   >
-                    <FaTrash size={14}/>
+                    <FaTrash size={16}/>
                   </button>
                   <button 
                     className='text-gray-600 hover:text-pink-500 transition-colors' 
                     onClick={() => toggleFavorite(product.id)}
                   >
-                    <FaHeart size={14}/>
+                    <FaHeart size={16}/>
                   </button>
                 </div>
               </div>
@@ -169,13 +172,17 @@ const Cart = () => {
               <h4 className='text-xl font-semibold mb-4'>RESUMEN DE COMPRA</h4>
 
               {/* Subtotal con ícono de información */}
-              <div className='flex items-center justify-between'>
-                <p className='text-gray-600 '>Subtotal:</p>
-                {/* <FaQuestionCircle 
-                  size={16} 
-                  className='text-gray-500 cursor-pointer hover:text-gray-600 mr-2' 
-                  title="El subtotal refleja el importe total de su pedido, no incluye los gastos del envío."
-                /> */}
+              <div className='flex items-center justify-between relative'>
+                <p className='text-gray-600 mr-2 '>Subtotal</p>
+                <div className='group relative flex items-center'>
+                  <FaQuestionCircle
+                    size={16}
+                    className='text-white-500 cursor-pointer hover:text-gray-600'/>
+                  <div className='absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex w-64 bg-gray-800 text-white text-xs rounded p-2 shadow-lg z-10'>
+                    El subtotal refleja el importe total de su pedido, no incluye los gastos del envío.
+                  </div>
+                </div>
+
                 <span className='text-lg font-semibold text-gray-800 ml-auto'>${calculateTotal().toFixed(2)}</span>
               </div>
 

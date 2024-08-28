@@ -25,7 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
   
-    color: black; */
+    color: black; 
     /* uso la fuente */
     @apply font-sans;
 }
