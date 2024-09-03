@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useContext } from 'react';
 import { CartContext } from '../../../context/CartContext';
 import ProductPageClient from "../[idproduct]/ProductPageClient";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import { Skeleton, Box, Typography, Container, Divider, Grid, Paper, IconButton, Button } from '@mui/material';
 import { ShoppingCart } from "lucide-react";
 import { formatPrice } from "../../../../lib/formatPrice";

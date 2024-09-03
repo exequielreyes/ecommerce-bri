@@ -68,3 +68,14 @@ body {
   margin-top: 1rem;
 }*/
 
+.zoom-container {
+  overflow: hidden; /* Esconde las partes de la imagen que se agrandan fuera de su contenedor */
+}
+
+.zoom-container img {
+  transition: transform 0.3s ease-in-out; /* Animación suave de zoom */
+}
+
+.zoom-container:hover img {
+  transform: scale(1.1); /* Zoom al pasar el cursor */
+}

@@ -8,6 +8,8 @@ import { useClerk, useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import MenuList from "./MenuList";
 import { ShoppingCart, User } from 'lucide-react';
+import Search from "./Search";
+
 
 
 
@@ -50,19 +52,25 @@ const handleCartClick = (e) => {
 
   return (
     <nav className="  p-4">
-      <div className="container mx-auto flex justify-between items-center ">
+      <div className="container mx-auto flex justify-between items-center">
         <h1 className="text-3xl cursor-pointer"  onClick={() => router.push("/")}  > Indumentary
           <span className="font-bold">BRIX</span>
         </h1>
 
 
-        <div className='items-center justify-between hidden sm:flex'>
+        {/* <div className='items-center justify-between hidden sm:flex'>
            <MenuList />
+        </div> */}
+       <div className="flex-grow flex justify-center items-center gap-4">
+          {/* MenuList y Barra de búsqueda */}
+          <MenuList />
+          <Search />
+          
         </div>
         
-        {/* <div className="text-3xl font-bold">
-        <Link href="/">Brix_Indumentary</Link>
-        </div> */}
+
+        
+   
 
         <div className="md:hidden">
           <button onClick={toggleMenu} className="text-black focus:outline-none">

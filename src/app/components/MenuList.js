@@ -6,6 +6,7 @@ import { Menu, MenuItem, Button, Typography, Box } from "@mui/material";
 import { Urbanist } from "next/font/google";
 
 
+
 const urbanist = Urbanist({
     weight: ["400", "500", "700"],
     subsets: ["latin"],
@@ -34,6 +35,7 @@ const MenuList = () => {
   };
 
   return (
+    
     <Box  className={urbanist.className}>
       <Button
         aria-controls={open ? "about-menu" : undefined}
@@ -138,6 +140,7 @@ const MenuList = () => {
           </a>
         </Link>
       </Button>
+      
     </Box>
   );
 };
