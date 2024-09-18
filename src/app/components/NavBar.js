@@ -1,14 +1,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { useClerk, useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import MenuList from "./MenuList";
-import { ShoppingCart, User } from 'lucide-react';
+import { Heart, ShoppingCart, User } from 'lucide-react';
 import Search from "./Search";
+
+import { useLovedProducts } from "@/context/UseLovedProducts";
 
 
 
@@ -18,6 +19,7 @@ function NavBar() {
 
 //obtener el contexto del carrito
 const { cart } = useContext(CartContext);
+const { lovedItems} = useLovedProducts();
 
 //se desplega el menu
 const [isOpen, setIsOpen] = useState(false);
@@ -69,8 +71,6 @@ const handleCartClick = (e) => {
         </div>
         
 
-        
-   
 
         <div className="md:hidden">
           <button onClick={toggleMenu} className="text-black focus:outline-none">
@@ -108,22 +108,11 @@ const handleCartClick = (e) => {
           </button>
         </div>
         <ul className={`absolute z-10 top-0 left-0 right-0 bottom-0  md:relative md:flex md:flex-row md:justify-center md:items-center ${isOpen ? 'flex flex-col mt-20 md:mt-0' : 'hidden'} md:flex space-x-4 md:space-x-6 md:mt-0 items-center md:absolute md:right-0`}>
+          
           {/* <li className="text-xl ">
-            <Link className="no-underline  hover:border-b-4 hover:py-2 hover:border-black" href="/">Inicio</Link>
-          </li>
-          <li className="text-xl ">
-            <Link className="no-underline hover:border-b-4 hover:py-2 hover:border-black" href="/about">Acerca de mi</Link>
-          </li> */}
-          {/* <li className="text-xl ">
-            <Link className="no-underline  hover:border-b-4 hover:py-2 hover:border-black" href="/categories">Categoria</Link>
-          </li> */}
-          <li className="text-xl ">
             <Link className="no-underline  hover:border-b-4 hover:py-2 hover:border-black" href="/products">Productos</Link>
-          </li>
-          {/* <li className="text-xl ">
-            <Link className="no-underline  hover:border-b-4 hover:py-2 hover:border-black" href="/contact">Contactos</Link>
           </li> */}
-
+          
 
  <div className='flex items-center justify-between gap-3 sm:gap-7'>
 
@@ -135,6 +124,19 @@ const handleCartClick = (e) => {
               )}
             </Link>
           </li>
+
+          <li className="relative">
+              <Link className="text-black flex items-center" href="/loved-products">
+                <Heart className={`w-6 h-6 ${lovedItems.length > 0 ? 'fill-black dark:fill-white' : ''}`} />
+                {lovedItems.length > 0 && (
+                  <span className="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 text-white bg-purple-500 rounded-full text-xs font-semibold">
+                    {lovedItems.length}
+                  </span>
+                )}
+              </Link>
+            </li>
+
+
      
           {isSignedIn && (
             <li

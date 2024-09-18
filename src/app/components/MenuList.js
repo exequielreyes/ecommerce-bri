@@ -109,7 +109,8 @@ const MenuList = () => {
         }}
       >
         <MenuItem onClick={handleCloseCategories}>
-                <Link href="/categories" passHref legacyBehavior>
+                <Link href="/search-results
+                " passHref legacyBehavior>
                     <a style={{ textDecoration: "none", color: "inherit" }}>
                     <Typography className={urbanist.className} sx={{ color: "black", fontSize: "1.15rem" }}>Todas las Categorías</Typography>
                     </a>
@@ -165,4 +166,17 @@ const components = [
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
+  {
+    title: "Camperas",
+    href: "/category/camperas",
+    description:
+      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+  },
+  {
+    title: "Shorts",
+    href: "/category/shorts",
+    description:
+      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+  }
+  
 ];

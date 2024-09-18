@@ -7,7 +7,7 @@ const client = new MercadoPagoConfig({
 
 export async function POST(request) {
   try {
-    const { title, quantity, price, image } = await request.json();
+    const { title, quantity, price, images } = await request.json();
     const body = {
       items: [
         {
@@ -15,7 +15,7 @@ export async function POST(request) {
           quantity: Number(quantity),
           unit_price: Number(price),
           currency_id: "ARS",
-          picture_url: image,
+          picture_url: images,
         },
       ],
       back_urls: {
@@ -38,3 +38,6 @@ export async function POST(request) {
     );
   }
 }
+
+
+
