@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Slider from "react-slick";
-import { Card, CardContent } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -14,6 +13,8 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 6000, // Ajusta el intervalo de autoplay
+  pauseOnHover: true,  // Pausar al hacer hover
+  adaptiveHeight: true, // Ajusta la altura dependiendo del contenido
 };
 
 export const dataCarouselTop = [
@@ -25,14 +26,14 @@ export const dataCarouselTop = [
   },
   {
     id: 2,
-    title: "Consigue hasta un -25% en compras superiores a 40€",
-    description: "-20% al gasta 100€ o -25% al gastar 150€. Usa el codigo BRIX",
+    title: "Consigue hasta un -25% en compras superiores a $40,000",
+    description: "-20% al gastar $100,000 o -25% al gastar $150,000. Usa el código BRIX",
     link: "#",
   },
   {
     id: 3,
     title: "Devoluciones y entregas gratuitas",
-    description: "Como cliente, tienes envios y devoluciones gratis en un plazo de 30 dias en todos los pedidos",
+    description: "Como cliente, tienes envíos y devoluciones gratis en un plazo de 30 días en todos los pedidos",
     link: "#",
   },
   {
@@ -47,16 +48,18 @@ function CarrouselTextBanner() {
   const router = useRouter();
 
   return (
-    <div className=" w-full    bg-gray-200 dark:bg-primary">
+    <div className="w-full bg-gray-200 dark:bg-primary">
       <Slider {...settings} className="w-full">
         {dataCarouselTop.map(({ id, title, link, description }) => (
-          <div key={id} className="cursor-pointer w-full" onClick={() => router.push(link)} >
-            <Card className="shadow-none border-none bg-transparent w-full">
-              <CardContent className="flex flex-col justify-center p-2 items-center text-center w-full">
-                <p className="sm:text-lg text-wrap dark:text-secondary">{title}</p>
-                <p className="text-xs sm:text-sm text-wrap dark:text-secondary">{description}</p>
-              </CardContent>
-            </Card>
+          <div
+            key={id}
+            className="cursor-pointer w-full p-4"
+            onClick={() => router.push(link)}
+          >
+            <div className="bg-transparent text-center">
+              <p className="text-lg font-semibold dark:text-secondary">{title}</p>
+              <p className="text-sm dark:text-secondary">{description}</p>
+            </div>
           </div>
         ))}
       </Slider>

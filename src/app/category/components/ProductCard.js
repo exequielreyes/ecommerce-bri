@@ -15,6 +15,9 @@ import { useLovedProducts } from "@/context/UseLovedProducts";
   azul: "#0000FF",
   blanco: "#FFFFFF",
   gris: "#808080",
+  rosa: "#FFC0CB",
+  amarillo: "#EFB810",
+  morado:"#8A36D2",
 }
 
 // Función para determinar el color del texto en función del color de fondo

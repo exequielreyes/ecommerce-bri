@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function FilterColor({ selectedColors, setSelectedColors }) {
     const [open, setOpen] = useState(false);
-  const colors = ['Negro', 'Rojo', 'Verde', 'Azul' , 'Blanco' , 'Gris'];
+  const colors = ['Negro', 'Rojo', 'Verde', 'Azul' , 'Blanco' , 'Gris','Rosa','Amarillo','Morado'];
   
   const handleChange = (event) => {
     const { value, checked } = event.target;

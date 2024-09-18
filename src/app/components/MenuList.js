@@ -151,32 +151,21 @@ export default MenuList;
 const components = [
   {
     title: "Remera",
-    href: "/category/remeras",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    href: "/category/remeras"
   },
   {
     title: "Buzo",
-    href: "/category/buzos",
-    description: "For sighted users to preview content available behind a link.",
+    href: "/category/buzos"
   },
   {
-    title: "Pantalon",
-    href: "/category/pantalones",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
+    title: "Pantalones",
+    href: "/category/pantalones"},
   {
     title: "Camperas",
-    href: "/category/camperas",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
+    href: "/category/camperas"},
   {
     title: "Shorts",
-    href: "/category/shorts",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  }
+    href: "/category/shorts"
+   }
   
 ];
