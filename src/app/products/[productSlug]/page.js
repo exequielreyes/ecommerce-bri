@@ -1,13 +1,15 @@
 "use client";
 
 import { useGetProductBySlug } from "@/app/api/getProductBySlug";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import SkeletonProduct from "./components/SkeletonProduct";
 import CarouselProduct from "./components/CarouselProduct";
 import InfoProduct from "./components/InfoProduct";
+import { Box, Button, Divider, Typography } from "@mui/material";
 
 function Page() {
   const params = useParams();
+  const router = useRouter(); // Hook para manejar la navegación
   const productSlug = params.productSlug;
 
   const { result } = useGetProductBySlug(productSlug);
@@ -16,24 +18,58 @@ function Page() {
     return <SkeletonProduct />;
   }
 
-  console.log(result[0].attributes.images);
+  // console.log(result[0].attributes.images);
+  const product = result[0];
+  
+const category = product.attributes.category?.data?.attributes?.categoryName || 'Categoría no disponible';  
+const taste = product.attributes.taste || 'Género no disponible';
+
 
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-32 sm:px-24">
+
+
+    {/* Fondo del producto */}
+    <Box sx={{ 
+      padding: 3, // Espaciado interno 
+      borderRadius: 2, // Bordes redondeados
+      position: 'relative', // Posición relativa para superponer contenido
+      // bgcolor: '#ffffff', // Color de fondo
+      // boxShadow: 1, // Sombra
+      // border: '1px solid #ddd', // Borde
+    }}>
+      {/* Información de categoría y género */}
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <Button 
+            variant="text" 
+            onClick={() => router.back()} 
+            sx={{ mr: 1, padding: 0 }} // Sin margen y sin padding para que se vea integrado
+          >
+            Volver
+          </Button>
+          
+          <Typography variant="body1" sx={{ color: 'gray', fontWeight: 'bold' }}>
+         {"|"}   {taste} <strong>{ " > "}</strong> {category }  
+          </Typography>
+        </Box>
+
+      {/* <Divider sx={{ width: '350px', mb: 2 }} /> */}
+
       <div className="grid sm:grid-cols-2">
         <div>
-          {/* Verificar si hay imágenes antes de renderizar el componente */}
           {result[0].attributes.images?.data?.length > 0 ? (
             <CarouselProduct images={result[0].attributes.images} />
           ) : (
             <p>No hay imágenes disponibles.</p>
           )}
         </div>
+
         <div className="sm:px-12">
-          <InfoProduct product={result[0]} />
+          <InfoProduct product={product} />
         </div>
       </div>
-    </div>
+    </Box>
+  </div>
   );
 }
 
