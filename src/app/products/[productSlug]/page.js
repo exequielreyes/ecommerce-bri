@@ -26,7 +26,7 @@ const taste = product.attributes.taste || 'Género no disponible';
 
 
   return (
-    <div className="max-w-6xl py-4 mx-auto sm:py-32 sm:px-24">
+    <div className="max-w-6xl py-4 mt-8 mx-auto sm:pb-32  sm:px-24">
 
 
     {/* Fondo del producto */}
@@ -36,7 +36,7 @@ const taste = product.attributes.taste || 'Género no disponible';
       position: 'relative', // Posición relativa para superponer contenido
       // bgcolor: '#ffffff', // Color de fondo
       // boxShadow: 1, // Sombra
-      // border: '1px solid #ddd', // Borde
+       //border: '1px solid #ddd', // Borde
     }}>
       {/* Información de categoría y género */}
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>

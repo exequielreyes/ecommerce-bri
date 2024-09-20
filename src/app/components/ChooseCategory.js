@@ -168,7 +168,7 @@ const ChooseCategory = () => {
                     className="relative w-1/3 overflow-hidden rounded-lg shadow-md"
                     style={{ flex: `0 0 calc(100% / ${itemsToShow})` }}
                   >
-                    <div className="w-full h-48 bg-gray-300 animate-pulse"></div>
+                   <div className="w-full h-48 bg-gray-300 animate-pulse"></div>
                     <div className="h-8 w-4/5 bg-gray-400 animate-pulse mt-2 mx-auto"></div>
                   </div>
                 ))
@@ -177,16 +177,18 @@ const ChooseCategory = () => {
                 <Link
                   key={category.id}
                   href={`/category/${category.attributes.slug}`}
-                  className="relative w-1/3 overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className="relative w-1/3 overflow-hidden   transition-shadow"
                   style={{ flex: `0 0 calc(100% / ${itemsToShow})` }}
                 >
                   <img
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${category.attributes.mainImage.data.attributes.url}`}
                     alt={category.attributes.categoryName}
-                    className="w-full h-[300px] object-cover rounded-lg transition-transform duration-200 ease-in-out hover:scale-105"
+                    // className="w-full h-[300px] object-cover rounded-lg transition-transform duration-200 ease-in-out hover:scale-105"
+                     className="w-full  transition duration-200 ease-in-out rounded-lg hover:scale-110"
                   />
                   <p
-                    className="absolute w-full py-2 text-lg font-bold text-center text-black bottom-5 backdrop-blur-lg"
+                    // className="absolute w-full py-2 text-lg font-bold text-center text-black bottom-5 backdrop-blur-lg"
+                     className="absolute w-full py-2 text-lg font-bold text-center text-black bottom-14 backdrop-blur-lg"
                     style={{
                       whiteSpace: "nowrap",
                       overflow: "hidden",
