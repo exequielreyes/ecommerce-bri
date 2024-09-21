@@ -109,7 +109,7 @@ const MenuList = () => {
         }}
       >
         <MenuItem onClick={handleCloseCategories}>
-                <Link href="/search-results
+                <Link href="/category/search-results
                 " passHref legacyBehavior>
                     <a style={{ textDecoration: "none", color: "inherit" }}>
                     <Typography className={urbanist.className} sx={{ color: "black", fontSize: "1.15rem" }}>Todas las Categorías</Typography>
