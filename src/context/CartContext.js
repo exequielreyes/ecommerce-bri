@@ -83,6 +83,7 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter(product => product.id !== productId));
   };
 
+ 
   const updateQuantity = (productId, quantity) => {
     setCart((prevCart) =>
       prevCart.map(product =>
@@ -93,8 +94,13 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // Nueva función removeAll
+  const removeAll = () => {
+    setCart([]); // Vaciar el carrito
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, removeAll }}>
       {children}
     </CartContext.Provider>
   );

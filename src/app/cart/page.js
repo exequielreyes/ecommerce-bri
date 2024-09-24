@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
@@ -19,15 +19,53 @@ import { ChevronLeft } from "lucide-react";
 import { Button, IconButton } from "@mui/material";
 import { useLovedProducts } from "@/context/UseLovedProducts";
 
+import { loadStripe } from "@stripe/stripe-js";
+import { makePaymentRequest } from "../api/payment";
+
 const Cart = () => {
-  const { cart, removeFromCart, updateQuantity, toggleFavorite } = useContext(CartContext);
+  const { cart, removeFromCart, updateQuantity, removeAll } = useContext(CartContext);
   const [postalCode, setPostalCode] = useState("");
   const router = useRouter();
   const { addLoveItem } = useLovedProducts(); 
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
   const handleGoBack = () => {
     router.back();
   };
+
+  // useEffect(() => {
+  //   // Verifica si el carrito está vacío y si hay un flag en la URL o estado
+  //   if (cart.length > 0 && router.query && router.query.success) {
+  //     console.log("Limpiando el carrito...");
+  //     removeAll();
+  //   }
+  // }, [cart, router.query, removeAll]);
+
+
+
+  const buyStripe = async () => {
+    try {
+      const stripe = await stripePromise;
+  
+      // Realizar una solicitud POST a tu API de órdenes
+      const res = await makePaymentRequest.post("/api/orders", {
+        products: cart, // Usamos los productos del carrito
+      });
+  
+      
+      // Redirigir al checkout de Stripe con la sesión devuelta
+      await stripe?.redirectToCheckout({
+        sessionId: res.data.stripeSession.id, // Asegúrate de que `res.data` contenga la sesión
+      });
+
+      // removeAll();
+    
+    } catch (error) {
+      console.error("Error al redirigir a Stripe Checkout", error);
+    }
+  };
+
+
 
   const currentStep = 1;
 
@@ -296,7 +334,10 @@ const Cart = () => {
                   ${calculateTotal().toFixed(2)}
                 </span>
               </p>
-              <button className="bg-purple-500 text-white px-4 py-2 rounded w-full hover:bg-purple-600 transition-colors duration-300">
+              <button 
+              className="bg-purple-500 text-white px-4 py-2 rounded w-full hover:bg-purple-600 transition-colors duration-300"
+              onClick={buyStripe}
+              >
                 Continuar compra
               </button>
             </div>
