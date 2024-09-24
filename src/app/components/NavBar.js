@@ -12,9 +12,6 @@ import Search from "./Search";
 import { useLovedProducts } from "@/context/UseLovedProducts";
 
 
-
-
-
 function NavBar() {
 
 //obtener el contexto del carrito

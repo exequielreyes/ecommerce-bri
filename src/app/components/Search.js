@@ -87,7 +87,7 @@ export default function Search(props) {
     onSubmit(event) {
       event.preventDefault();
       const query = inputRef.current.value;
-      router.push(`/search-results?q=${query}`);
+      router.push(`/category/search-results?q=${query}`);
       closePanel(); // Cierra el panel al enviar el formulario
     },
   });
