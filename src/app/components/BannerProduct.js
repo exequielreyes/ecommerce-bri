@@ -20,7 +20,7 @@ function BannerProduct() {
         mt={5}
         height={{ xs: 350, lg: 600 }}
         sx={{
-          backgroundImage: "url('/banner-slide.jpg')",
+          backgroundImage: "url('/banner.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
