@@ -6,6 +6,7 @@ import SkeletonProduct from "./components/SkeletonProduct";
 import CarouselProduct from "./components/CarouselProduct";
 import InfoProduct from "./components/InfoProduct";
 import { Box, Button, Divider, Typography } from "@mui/material";
+import Link from "next/link";
 
 function Page() {
   const params = useParams();
@@ -23,6 +24,9 @@ function Page() {
   
 const category = product.attributes.category?.data?.attributes?.categoryName || 'Categoría no disponible';  
 const taste = product.attributes.taste || 'Género no disponible';
+const name = product.attributes.productName
+const categorySlug = product.attributes.category?.data?.attributes?.slug;
+
 
 
   return (
@@ -48,8 +52,8 @@ const taste = product.attributes.taste || 'Género no disponible';
             Volver
           </Button>
           
-          <Typography variant="body1" sx={{ color: 'gray', fontWeight: 'bold' }}>
-         {"|"}   {taste} <strong>{ " > "}</strong> {category }  
+          <Typography variant="body1" sx={{ color: 'gray', fontWeight: 'semiBold' }} className="text-md" >
+         {"|"}   {taste} <span className="p-1">{ " > "} </span>   <Link href={`/category/${categorySlug}`}> <span className="hover:text-blue-400"> {category } </span> </Link>  <span className="p-1">{ " > "} </span>  <span className="text-gray-400">{name }</span>  
           </Typography>
         </Box>
 
