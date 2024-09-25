@@ -4,7 +4,7 @@ export default function About() {
       <div className="text-center">
         <h1 className="text-4xl font-bold text-blue-600 mb-4">En Mantenimiento</h1>
         <p className="text-lg text-gray-700 mb-8">
-          Estamos trabajando para mejorar nuestra página. ¡Vuelve pronto!
+          Estamos trabajando para mejorar nuestra página. 
         </p>
         <svg
           className="animate-spin h-10 w-10 mx-auto text-blue-600"

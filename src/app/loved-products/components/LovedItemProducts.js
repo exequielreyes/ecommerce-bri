@@ -1,66 +1,65 @@
 import React, { useContext } from "react";
-import { Card, CardMedia, CardContent, Typography, Button, IconButton } from "@mui/material";
-import { X } from "lucide-react";
-// import { useCart } from "@/context/CartContext";
+import { IconButton, Typography } from "@mui/material";
+import { FaTrash, FaShoppingCart } from "react-icons/fa"; 
 import { CartContext } from "@/context/CartContext";
 import { useLovedProducts } from "@/context/UseLovedProducts";
 import { formatPrice } from "../../../../lib/formatPrice";
-import { useRouter } from "next/navigation";
 
 function LovedItemProduct({ product }) {
-  const router = useRouter();
   const { removeLovedItem } = useLovedProducts();
-//   const { addItem } = useCart();
-const { addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
 
+  const imageUrl = product.attributes?.images?.data?.[0]?.attributes?.url
+    ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${product.attributes.images.data[0].attributes.url}`
+    : "/default-image.jpg";
 
-const imageUrl = product.attributes?.images?.data?.[0]?.attributes?.url
-? `${process.env.NEXT_PUBLIC_BACKEND_URL}${product.attributes.images.data[0].attributes.url}`
-: '/default-image.jpg';
-
-
-  // const addToCheckout = () => {
-  //   addToCart(product);
-  // };
   const removeToCheckout = () => {
     removeLovedItem(product.id);
-  }
+  };
 
   return (
-    <Card sx={{ display: "flex", mb: 2 }}>
-      {/* Imagen del producto */}
-      <CardMedia
-        component="img"
-        sx={{ width: 150 }}
-        image={imageUrl}
-        alt={product.attributes.productName}
-      />
-      
-      {/* Contenido del producto */}
-      <CardContent sx={{ flex: "1 0 auto" }}>
-        <Typography component="div" variant="h5">
-          {product.attributes.productName}
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary" component="div">
-          {formatPrice(product.attributes.price)}
-        </Typography>
+    <div className="flex justify-center mb-4">
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 shadow-md hover:shadow-lg rounded-lg flex flex-col md:flex-row items-center p-4 w-full max-w-md transition-transform duration-300 ease-in-out transform hover:scale-104">
 
-        {/* Botón para añadir al carrito */}
-        <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={() => addToCart(product)}>
-          Añadir al carrito
-        </Button>
-      </CardContent>
 
-      {/* Botón para eliminar el producto */}
-      <IconButton
-        edge="end"
-        color="secondary"
-        onClick={removeToCheckout}
-        sx={{ alignSelf: "center", mr: 2 }}
-      >
-        <X size={20} />
-      </IconButton>
-    </Card>
+        <img
+          src={imageUrl}
+          alt={product.attributes.productName}
+          className="w-32 h-32 object-cover rounded-md mb-4 md:mb-0 md:mr-4" // Cambia a object-cover para evitar bordes
+        />
+
+        {/* Contenido del producto */}
+        <div className="flex-grow">
+          <Typography variant="h6" className="font-semibold text-gray-800">
+            {product.attributes.productName}
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            className="text-green-600 font-semibold"
+          >
+            {formatPrice(product.attributes.price)}
+          </Typography>
+        </div>
+
+        {/* Contenedor para los íconos a la derecha */}
+        <div className="flex flex-col space-y-2 ml-4">
+          {/* Botón para añadir al carrito como ícono */}
+          <IconButton
+            className="text-gray-500 hover:text-green-500 transition-colors"
+            onClick={() => addToCart(product)}
+          >
+            <FaShoppingCart size={20} />
+          </IconButton>
+          {/* Botón para eliminar el producto */}
+          <IconButton
+            className="text-gray-500 hover:text-red-500 transition-colors"
+            onClick={removeToCheckout}
+          >
+            <FaTrash size={20} />
+          </IconButton>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -153,13 +153,17 @@ const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
         </Grid>
 
         {/* Paginación */}
-        <Box className="mt-8 flex justify-center">
+        <Box className="mt-8 flex justify-center space-x-3">
           {Array.from({ length: totalPages }, (_, index) => (
             <Button
               key={index + 1}
               variant={currentPage === index + 1 ? "contained" : "outlined"}
               onClick={() => handlePageChange(index + 1)}
-              className="mx-2"
+              className={`w-8 h-8 text-sm font-semibold rounded-full transition duration-150 flex items-center justify-center ${
+                currentPage === index + 1
+                  ? "bg-gradient-to-tr from-purple-600 to-blue-300 text-white shadow-lg"
+                  : "border border-purple-300 text-purple-700 hover:bg-purple-50"
+              }`}
             >
               {index + 1}
             </Button>

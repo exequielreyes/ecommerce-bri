@@ -98,7 +98,7 @@ export default function Search(props) {
 
   return (
     <form ref={containerRef} className="flex justify-center w-full md:w-1/2" {...formProps}>
-      <div className="flex relative p-1 bg-gradient-to-tr from-purple-600 to-blue-300 rounded-full w-full">
+      <div className="flex relative p-1 bg-gradient-to-tr from-purple-500 to-blue-400 rounded-full w-full">
         <input
           ref={inputRef}
           className="w-full md:w-96 flex-1 p-2 px-4 rounded-full"
