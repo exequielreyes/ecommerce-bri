@@ -18,6 +18,8 @@ import {
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/theme-provider";
+import ChatBotButton from "./components/ChatBotButton";
+
 
 
 const inter = Inter({subsets:['latin']})
@@ -49,6 +51,7 @@ export default function RootLayout({ children, title }) {
             </UseLovedProductsProvider>
           </CartProvider>
           </ThemeProvider>
+          <ChatBotButton />
         </body>
       </html>
     </ClerkProvider>

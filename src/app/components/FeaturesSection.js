@@ -16,7 +16,7 @@ export default function FeaturesSection() {
         <p className="text-center text-gray-600 dark:text-gray-400">
           Podés pagar con tarjeta, débito, efectivo o con Cuotas sin Tarjeta.
         </p>
-        <a href="#" className="text-blue-500 mt-2">Cómo pagar tus compras</a>
+        {/* <a href="#" className="text-blue-500 mt-2">Cómo pagar tus compras</a> */}
       </div>
 
       {/* Segundo bloque */}
@@ -30,8 +30,7 @@ export default function FeaturesSection() {
         />
         <h3 className="text-lg font-bold mb-2">Envío gratis desde $ 28.000</h3>
         <p className="text-center text-gray-600 dark:text-gray-400">
-          Solo por estar registrado en Mercado Libre tenés envíos gratis en miles de productos.
-          Es un beneficio de Mercado Puntos.
+          Solo por estar registrado en Indumentaria Brix tenés envíos gratis en algunos productos.
         </p>
       </div>
 
@@ -46,10 +45,10 @@ export default function FeaturesSection() {
         />
         <h3 className="text-lg font-bold mb-2">Seguridad, de principio a fin</h3>
         <p className="text-center text-gray-600 dark:text-gray-400">
-          ¿No te gusta? ¡Devolvelo! En Mercado Libre, no hay nada que no puedas hacer, porque
+          ¿No te gusta? ¡Devolvelo! En Indumentaria Brix, no hay nada que no puedas hacer, porque
           estás siempre protegido.
         </p>
-        <a href="#" className="text-blue-500 mt-2">Cómo te protegemos</a>
+        {/* <a href="#" className="text-blue-500 mt-2">Cómo te protegemos</a> */}
       </div>
     </div>
   );
