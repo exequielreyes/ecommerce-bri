@@ -1,37 +1,25 @@
 import Link from 'next/link';
-import { Button, Box, Typography } from '@mui/material';
-
 function BannerDiscount() {
   return (
-    <Box  sx={{ padding: '92px' ,textAlign:'center'}}>
-      <Typography variant="h4" component="h2" className="uppercase font-black text-primary p-">
+    <div  className='py-24 text-center'>
+      <span className= 'text-3xl block uppercase font-black text-primary'>
         Consigue hasta un -25%
-      </Typography>
-      <Typography variant="h6" component="h3" className="mt-3 font-semibold">
-        -20% al gastar 100€. Usa el codigo BRIX
-      </Typography>
-      <Box maxWidth="md" mx="auto" display="flex" justifyContent="center" gap={2} marginTop={5}>
-        <Button
-          component={Link}
-          href=""
-          variant="contained"
-          color="primary"
-          className="font-bold"
-        >
-          Comprar
-        </Button>
-        <Button
-          component={Link}
-          href="#"
-          variant="outlined"
-          color="primary"
-          className="font-bold"
-        >
+      </span>
+      <span className= 'mt-3 text-lg font-semibold'>
+       Envio gratis desde $80.000
+      </span>
+      <div  className="max-w-md mx-auto flex justify-center gap-4 mt-5">
+      <Link href="/category/search-results"  className="px-6 py-2 bg-primary text-white rounded hover:bg-primary-dark transition"  passHref>
+          
+            Comprar
+        </Link>
+        <Link href="/about" passHref className="px-6 py-2 border border-primary text-primary  rounded hover:bg-primary-light hover:text-gray-600 transition">
           Más información
-        </Button>
-      </Box>
-    </Box>
+        </Link>
+      </div>
+    </div>
   );
 }
 
 export default BannerDiscount;
+

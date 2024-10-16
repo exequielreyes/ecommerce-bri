@@ -1,8 +1,9 @@
 "use client";
 
- import { Urbanist } from "next/font/google";
+
+ import { Inter } from "next/font/google";
 import "./globals.css";
-import NavBar from "./components/NavBar";
+
 // import localFont from 'next/font/local';
 import Head from "next/head";
 import { CartProvider } from "@/context/CartContext";
@@ -15,31 +16,44 @@ import {
   UserButton
 } from '@clerk/nextjs'
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { ThemeProvider } from "./components/theme-provider";
 
-const urbanist = Urbanist({ subsets: ["latin"] });
 
-export default function RootLayout({ children }) {
+const inter = Inter({subsets:['latin']})
+
+
+export default function RootLayout({ children, title }) {
   return (
     <ClerkProvider>
       <html lang="es">
         <Head>
-          <title>IndumentaryBrix</title>
+          <title>IndumentaryBrix {title ? `| ${title}` : "" }  </title>
+          <meta name="description" content="Ecommerce de ropa" />
+                <link rel="icon" href="/favicon.ico" />
         </Head>
-        <body className={`${urbanist.className} flex flex-col min-h-screen`}>
+
+        <body className={`${inter.className} flex flex-col min-h-screen`}>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
           <CartProvider>
             <UseLovedProductsProvider>
-              <NavBar />
+              <Header />
+              
               <main className="flex-grow">{children}</main>
               <Footer />
             </UseLovedProductsProvider>
           </CartProvider>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
   );
 }
-
-
 
 
 

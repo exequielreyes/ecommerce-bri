@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import { useMemo, useRef, useState, useEffect } from 'react';
@@ -8,8 +9,9 @@ import { FaSearch } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import { formatPrice } from '../../../lib/formatPrice';
 
-const AutocompleteItem = ({title,slug, images, price, closePanel }) => {
-
+const AutocompleteItem = ({title,slug, images, price, discount, closePanel }) => {
+  const discountAmount = price * (discount / 100);
+  const finalPrice = price - discountAmount;
 
   return (
     <li onClick={closePanel}>
@@ -17,7 +19,16 @@ const AutocompleteItem = ({title,slug, images, price, closePanel }) => {
         <img src={images ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${images}` : '/default-image.jpg'} alt={title} className='w-12 h-12 object-contain' />
         <div>
           <h3 className='text-sm font-semibold'>{title}</h3>
-          <p className='text-xs text-gray-600'>{formatPrice(price)}</p>
+         {/* Mostramos el precio original tachado y el precio con descuento */}
+         {discount ? (
+            <div className='flex items-center gap-2'>
+              <p className='text-xs text-gray-400 line-through'>{formatPrice(price)}</p>
+              <p className='text-xs text-red-600 font-semibold'>{formatPrice(finalPrice)}</p>
+            </div>
+          ) : (
+            // Si no hay descuento, mostramos solo el precio normal
+            <p className='text-xs text-gray-600'>{formatPrice(price)}</p>
+          )}
         </div>
       </Link>
     </li>
@@ -97,23 +108,23 @@ export default function Search(props) {
   });
 
   return (
-    <form ref={containerRef} className="flex justify-center w-full md:w-1/2" {...formProps}>
-      <div className="flex relative p-1 bg-gradient-to-tr from-purple-500 to-blue-400 rounded-full w-full">
+    <form ref={containerRef} className="flex justify-center w-auto" {...formProps}>
+      <div className="flex relative p-1 md:w-[25rem] max-w-full bg-gradient-to-tr from-gray-500 to-gray-400 rounded-full w-full ">
         <input
           ref={inputRef}
-          className="w-full md:w-96 flex-1 p-2 px-4 rounded-full"
+          className="w-full  flex-1 p-1 px-3  rounded-full outline-none"
           {...inputProps}
         />
         <button
           type="submit"
-          className="p-2 rounded-full text-white"
+          className="p-2 rounded-full "
           onClick={closePanel} // Cierra el panel al hacer clic en el botón
         >
           <FaSearch size={18} />
         </button>
         {autocompleteState.isOpen && (
           <div
-            className="absolute mt-16 top-0 left-0 border border-gray-100 bg-white overflow-hidden rounded-lg shadow-lg z-10 w-full"
+            className="absolute mt-16 top-0 left-0 border border-gray-100 bg-white  dark:text-black overflow-hidden rounded-lg shadow-lg z-10 w-full"
             ref={panelRef}
             {...autocomplete.getPanelProps()}
           >

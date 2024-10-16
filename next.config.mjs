@@ -6,14 +6,18 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
       },
+      {
+        protocol:'https',
+        hostname:'images.unsplash.com',
+      }
       // Agrega más patrones si es necesario
     ],
   },
+  reactStrictMode:false
   // Otras configuraciones de Next.js
 }
 
 export default nextConfig;
-
 
 
 
