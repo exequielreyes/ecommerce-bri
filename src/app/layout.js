@@ -27,7 +27,7 @@ const inter = Inter({subsets:['latin']})
 
 export default function RootLayout({ children, title }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider language="es">
       <html lang="es">
         <Head>
           <title>IndumentaryBrix {title ? `| ${title}` : "" }  </title>
