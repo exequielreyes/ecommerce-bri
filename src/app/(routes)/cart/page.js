@@ -33,23 +33,24 @@ const Cart = () => {
 
 
 
-  const BuyStripe = async (cart, product = null) => { // Cambia aquí para aceptar el carrito como argumento
-    try {
-      const stripe = await stripePromise;
-      const productsToCheckout = product ? [product] : cart; // Usa el producto si se pasa, de lo contrario usa el carrito
-      const res = await makePaymentRequest.post("/api/orders", { products: productsToCheckout });
-      const { error } = await stripe.redirectToCheckout({ sessionId: res.data.stripeSession.id });
-      if (!error) {
+  // const BuyStripe = async (cart, product = null) => { // Cambia aquí para aceptar el carrito como argumento
+  //   try {
+  //     const stripe = await stripePromise;
+  //     const productsToCheckout = product ? [product] : cart; // Usa el producto si se pasa, de lo contrario usa el carrito
+  //     const res = await makePaymentRequest.post("/api/orders", { products: productsToCheckout });
+  //     const { error } = await stripe.redirectToCheckout({ sessionId: res.data.stripeSession.id });
+  //     if (!error) {
 
-        removeAll();
-      } else {
-        console.error("Error en Stripe Checkout", error)
-      }
-    } catch (error) {
-      console.error("Error al redirigir a Stripe Checkout", error);
-    }
-  };
+  //       removeAll();
+  //     } else {
+  //       console.error("Error en Stripe Checkout", error)
+  //     }
+  //   } catch (error) {
+  //     console.error("Error al redirigir a Stripe Checkout", error);
+  //   }
+  // };
 
+  
   // const calculateTotal = () => cart.reduce((total, product) => total + product.attributes.price * product.quantity, 0);
   const calculateTotal = () => {
     const total = cart.reduce((total, product) => {
@@ -93,6 +94,10 @@ const Cart = () => {
   };
 
 const cartItemsCount = cart.length;
+const handleCheckout = () => {
+  router.push('/checkout'); // Redirigir a la página de checkout
+};
+
 
   return (
     <div className="container mx-auto p-4">
@@ -174,7 +179,8 @@ const cartItemsCount = cart.length;
               onPostalCodeSubmit={handlePostalCodeSubmit}
 
               shippingCost={shippingCost} // Asegúrate de pasar el costo de envío
-              onCheckout={() => BuyStripe(cart)}
+              // onCheckout={() => BuyStripe(cart)}
+              onCheckout={handleCheckout}
 
             />
           </div>

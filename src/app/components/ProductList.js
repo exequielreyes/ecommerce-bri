@@ -5,44 +5,54 @@ import { Skeleton } from './ui/skeleton'; // Shadcn UI Skeleton
 import ProductItem from './ProductItem';
 import { CartContext } from "@/context/CartContext";
 import ProductModal from './ProductModal';
+import { Carousel, CarouselContent } from './ui/carousel';
 
 function ProductList({ productList }) {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(1); // Un producto por defecto
   const { addToCart } = useContext(CartContext);
-  
+  const [isDragging, setIsDragging] = useState(false); 
+  const [startX, setStartX] = useState(0); // Posición inicial del mouse
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    //     // Simulación de tiempo de carga
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); // Simulación de tiempo de carga
+    }); // Cambia este tiempo según lo necesario
 
     return () => clearTimeout(timer);
   }, []);
 
-  const handleAddToCartClick = (product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
 
-  const handleCloseModal = () => {
-    setSelectedProduct(null);
-    setIsModalOpen(false);
-  };
+ // Función para abrir el modal y seleccionar un producto
+ const handleAddToCartClick = (product) => {
+  setSelectedProduct(product);
+  setIsModalOpen(true);
+  
+};
+
+// Función para cerrar el modal
+const handleCloseModal = () => {
+  setSelectedProduct(null);
+  setIsModalOpen(false);
+};
+  
+
+  const limitedProducts = productList.slice(currentIndex, currentIndex + itemsToShow);
 
   const updateItemsToShow = () => {
     const width = window.innerWidth;
     if (width < 640) {
-      setItemsToShow(1); // Un producto en pantallas pequeñas
+      setItemsToShow(1);
     } else if (width < 768) {
-      setItemsToShow(2); // Dos productos en pantallas medianas
+      setItemsToShow(2);
     } else if (width < 1024) {
-      setItemsToShow(3); // Tres productos en pantallas grandes
+      setItemsToShow(3);
     } else {
-      setItemsToShow(4); // Cuatro productos en pantallas muy grandes
+      setItemsToShow(4);
     }
   };
 
@@ -54,14 +64,59 @@ function ProductList({ productList }) {
     };
   }, []);
 
-  const limitedProducts = productList.slice(currentIndex, currentIndex + itemsToShow);
+  // Función para mover hacia la izquierda
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  // Función para mover hacia la derecha
+  const handleNext = () => {
+    if (currentIndex < productList.length - itemsToShow) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  // Manejadores de eventos para el arrastre
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+
+    const dx = e.clientX - startX;
+    if (dx > 50) {
+      handlePrev();
+      setIsDragging(false); // Resetea el estado de arrastre
+    } else if (dx < -50) {
+      handleNext();
+      setIsDragging(false); // Resetea el estado de arrastre
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
   return (
     <div className='mt-10'>
       <h2 className='text-3xl mb-5 text-center font-bold sm:pb-3'>Productos destacados</h2>
 
       <div className="relative">
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <Carousel
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        >
+
+        <CarouselContent>
+
+       
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {loading
             ? Array(itemsToShow)
                 .fill()
@@ -76,22 +131,24 @@ function ProductList({ productList }) {
                 />
               ))}
         </div>
+        </CarouselContent>
 
         {/* Botones de navegación */}
         <button
-          className={`absolute left-2 top-1/2 transform -translate-y-1/2 z-10 ${currentIndex === 0 ? 'hidden' : ''}`}
-          onClick={() => setCurrentIndex(currentIndex - itemsToShow)}
-          disabled={currentIndex === 0}
-        >
-          &#10094;
-        </button>
-        <button
-          className={`absolute right-2 top-1/2 transform -translate-y-1/2 z-10 ${currentIndex >= productList.length - itemsToShow ? 'hidden' : ''}`}
-          onClick={() => setCurrentIndex(currentIndex + itemsToShow)}
-          disabled={currentIndex >= productList.length - itemsToShow}
-        >
-          &#10095;
-        </button>
+            className={`carousel-button absolute left-2 top-1/2 transform -translate-y-1/2 z-10 ${currentIndex === 0 ? 'disabled' : ''}`}
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+          >
+            &#10094;
+          </button>
+          <button
+            className={`carousel-button absolute right-2 top-1/2 transform -translate-y-1/2 z-10 ${currentIndex >= productList.length - itemsToShow ? 'disabled' : ''}`}
+            onClick={handleNext}
+            disabled={currentIndex >= productList.length - itemsToShow}
+          >
+            &#10095;
+          </button>
+      </Carousel>
       </div>
 
       {/* Modal de producto */}

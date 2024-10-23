@@ -12,7 +12,7 @@ import Image from "next/image";
 import ModalTalles from "./ModalTalles";
 
 const InfoProduct = ({ product }) => {
-  const [preferenceId, setPreferenceId] = useState(null);
+  // const [preferenceId, setPreferenceId] = useState(null);
   const { addToCart } = useContext(CartContext);
   const { addLoveItem } = useLovedProducts();
   const [added, setAdded] = useState(false); // Estado para controlar el feedback visual
@@ -25,9 +25,9 @@ const InfoProduct = ({ product }) => {
   const [sizeError, setSizeError] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
-  initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY, {
-    locale: "es-AR",
-  });
+  // initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY, {
+  //   locale: "es-AR",
+  // });
 
   // Función para crear la preferencia de pago
   const createPreference = async () => {
@@ -84,9 +84,16 @@ const InfoProduct = ({ product }) => {
       router.push("/sign-in");
       return;
     }
+  
     const id = await createPreference();
     if (id) {
-      setPreferenceId(id);
+      // Redirigir a la página de checkout con el producto y preferenceId
+      const query = new URLSearchParams({
+        preferenceId: id,
+        product: JSON.stringify({ ...product, quantity, selectedSize }), // Pasar el producto como query
+      }).toString();
+  
+      router.push(`/checkout?${query}`);
     }
   };
 
@@ -312,12 +319,12 @@ const InfoProduct = ({ product }) => {
       </Box>
 
       {/* MercadoPago Wallet */}
-      {preferenceId && (
+      {/* {preferenceId && (
         <Wallet
           initialization={{ preferenceId: preferenceId }}
           customization={{ texts: { valueProp: "smart_option" } }}
         />
-      )}
+      )} */}
     </div>
   );
 };
