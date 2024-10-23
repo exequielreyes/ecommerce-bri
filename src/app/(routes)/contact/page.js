@@ -109,7 +109,7 @@ function ContactPage() {
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="inline-block bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg text-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                className="inline-block bg-[#3B82F6] text-white font-semibold py-3 px-6 rounded-lg text-sm hover:bg-[#3B82F6]/80 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] dark:bg-[#3B82F6] dark:hover:bg-[#3B82F6]/80"
               >
                 {state.submitting ? "Enviando..." : "Enviar"}
               </button>
