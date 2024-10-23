@@ -8,7 +8,7 @@ import { Inter } from "next/font/google";
 const dataFooter = [
   { id: 1, name: "Sobre nosotros", link: "/about" },
   { id: 2, name: "Contacto", link: "/contact" },
-  { id: 3, name: "Mi cuenta", link: "#" },
+  { id: 3, name: "Mi cuenta", link: "/user-profile" },
   { id: 4, name: "Políticas de privacidad", link: "/privacy" },
 ];
 

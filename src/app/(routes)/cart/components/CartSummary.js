@@ -38,13 +38,13 @@ const CartSummary = ({ total, postalCode, onPostalCodeChange, onPostalCodeSubmit
                 id="postalCode"
                 value={postalCode}
                 onChange={onPostalCodeChange}
-                className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
+                className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-[#3B82F6] placeholder-gray-500"
                 placeholder="Ingresa tu código postal"
                 disabled={isFreeShipping}
               />
               <button
                 onClick={onPostalCodeSubmit}
-                className={`bg-purple-500 text-white px-4 py-2 ml-2 rounded hover:bg-purple-600 transition-colors duration-300 ${isFreeShipping ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`bg-[#3B82F6] text-white px-4 py-2 ml-2 rounded hover:bg-[#3B82F6]/80 transition-colors duration-300 ${isFreeShipping ? 'opacity-50 cursor-not-allowed' : ''}`}
                 disabled={isFreeShipping}
              >
                 Calcular
@@ -60,7 +60,7 @@ const CartSummary = ({ total, postalCode, onPostalCodeChange, onPostalCodeSubmit
           Total: <span className="font-bold ml-auto text-right">{formatPrice(finalPrice)}</span>
         </p>
         <button 
-          className="bg-purple-500 text-white px-4 py-2 rounded w-full hover:bg-purple-600 transition-colors duration-300"
+          className="bg-[#3B82F6] text-white px-4 py-2 rounded w-full hover:bg-[#3B82F6]/80 transition-colors duration-300"
           onClick={onCheckout}
         >
           Continuar compra
