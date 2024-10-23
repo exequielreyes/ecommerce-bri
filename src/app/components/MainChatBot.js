@@ -124,21 +124,69 @@ const DiseñoChat = {
                   { value: 'guia', label: 'Ver guía de talles', trigger: 'guiaTallas' },
                 ],
               },
+              // {
+              //   id: 'explicacionTallas',
+              //   message: 'Para elegir el talle correcto, te recomendamos medir tu busto, cintura y cadera. Luego, compáralo con nuestra tabla de talles.',
+              //   trigger: 'preguntaVuelta',
+              // },
+
+              { id: 'explicacionTallas', message: '¿Quiero saber el talle para hombre o mujer?', trigger: 'explicacionesGenero' },
+
               {
-                id: 'explicacionTallas',
-                message: 'Para elegir el talle correcto, te recomendamos medir tu busto, cintura y cadera. Luego, compáralo con nuestra tabla de talles.',
+                id: 'explicacionesGenero',
+                options:[
+                  { value: 'hombre', label: 'Hombre', trigger: 'explicacionHombre' },
+                  { value: 'mujer', label: 'Mujer', trigger: 'explicacionMujer' },
+                ],
+                // trigger: 'preguntaVuelta',
+              },
+
+              {
+                id: 'explicacionHombre',
+                message: `Sujetá la cinta métrica de forma horizontal para medir:\n\n
+                          1. Pecho, alrededor de la parte más ancha\n
+                          2. Cintura, alrededor de la parte más estrecha\n
+                          3. Cadera, alrededor de la parte más ancha, manteniendo los pies juntos\n
+                          Sujetá la cinta métrica de forma vertical para medir:\n
+                          4. Tiro de la entrepierna, desde la entrepierna hasta el piso\n
+                          5. Altura, desde la parte superior de la cabeza hasta el piso, manteniendo una postura recta`,
                 trigger: 'preguntaVuelta',
               },
+
+              {
+                id: 'explicacionMujer',
+                message: `Sujetá la cinta métrica de forma horizontal para medir:\n
+                          1. Pecho, alrededor de la parte más ancha\n
+                          2. Cintura, alrededor de la parte más estrecha\n
+                          3. Cadera, alrededor de la parte más ancha, manteniendo los pies juntos\n
+                          Sujetá la cinta métrica de forma vertical para medir:\n
+                          4. Tiro de la entrepierna, desde la entrepierna hasta el piso\n
+                          5. Altura, desde la parte superior de la cabeza hasta el piso, manteniendo una postura recta`,
+                trigger: 'preguntaVuelta',
+              },
+
               {
                 id: 'guiaTallas',
-                 message: 'Puedes consultar nuestra guía de talles aquí: [Enlace a guía de tallas].',
+                component:(
+                  <div>
+                    <p>Puedes consultar nuestra guía de talles aquí:</p>
+                    <button
+                    onClick={() => router.push('/talles')} 
+                     className="cursor-pointer underline hover:text-black text-sm"
+                    >
+                    Guía de Talles
+                    </button>
+                  </div>
+                ),
+                trigger: 'preguntaVuelta',
+                //  message: 'Puedes consultar nuestra guía de talles aquí: [Enlace a guía de tallas].',
               //   component: <ChatComponent  />,
               // asMessage: true,
-                trigger: 'preguntaVuelta',
               },
               {
                 id: 'envios',
-                message: 'Ofrecemos envíos nacionales e internacionales. El tiempo de entrega depende de tu ubicación. ¿Te gustaría saber más sobre los costos o el tiempo de entrega?',
+                message: `Los envíos se realizan en toda la República Argentina.
+                          La entrega se realizará en la dirección que nos indiques al momento de realizar tu compra, de lunes a viernes, entre las 8 y las 00 hs, con excepción de los feriados nacionales. Cuando la fecha de entrega coincida con un día feriado, se la pasará al próximo día hábil.`,
                 trigger: 'opcionesEnvio',
               },
               {
@@ -150,24 +198,25 @@ const DiseñoChat = {
               },
               {
                 id: 'costosEnvio',
-                message: 'El costo del envío varía según la ubicación. Los envíos dentro del país tienen un costo de $X, mientras que los envíos internacionales cuestan $Y.',
+                message: 'El costo del envío varía según la ubicación. Los envíos dentro del país tienen un costo de $X',
                 trigger: 'preguntaVuelta',
               },
               {
                 id: 'tiempoEnvio',
-                message: 'Los envíos nacionales tardan entre 3-5 días hábiles. Los envíos internacionales pueden tardar entre 7-15 días hábiles.',
+                message: 'El tiempo de entrega depende de la disponibilidad del producto, del tiempo de envío y de la aprobación del medio de pago. Los días que se indiquen son estimativos, y corren siempre a partir del momento en que el pedido se despacha. ',
                 trigger: 'preguntaVuelta',
               },
               {
                 id: 'devoluciones',
-                
                 component:(
-                  <div>
-                    <p>Nuestra política de devoluciones permite que devuelvas productos dentro de los 30 días posteriores a la compra, siempre que estén en su estado original. para conocer mas visita la siguiente seccion:</p>
+                  <div className="bg-[#3b82f6]  p-4">
+                  <div className="max-w-lg mx-auto">
+                    <p className="text-md">Nuestra política de devoluciones permite que devuelvas productos dentro de los 30 días posteriores a la compra, siempre que estén en su estado original. para conocer mas visita la siguiente seccion:</p>
                     <button onClick={()=> router.push('/privacy')}
-                       className="block text-md  py-2 px-3  text-[#3B82F6] font-bold rounded transition-transform duration-300 transform hover:scale-110 hover:text-blue-700 dark:text-[#E2E9FF] dark:hover:bg-gray-700 dark:hover:text-white">
+                       className="block text-[18px]  py-2   text-white font-bold rounded transition-transform duration-300 transform hover:scale-110  dark:text-[#E2E9FF] dark:hover:bg-gray-700 dark:hover:text-white">
                       Politica de devoluciones
                     </button>
+                  </div>
                   </div>
                 ),
                 // message: 'Nuestra política de devoluciones permite que devuelvas productos dentro de los 30 días posteriores a la compra, siempre que estén en su estado original.',

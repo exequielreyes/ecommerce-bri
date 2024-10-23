@@ -28,7 +28,7 @@ export default function FeaturesSection() {
           height={64}
           className="mb-4 transition-transform transform hover:scale-110"
         />
-        <h3 className="text-lg font-bold mb-2">Envío gratis desde $ 28.000</h3>
+        <h3 className="text-lg font-bold mb-2">Envío gratis desde $ 80.000</h3>
         <p className="text-gray-600 dark:text-gray-400">
           Solo por estar registrado en Indumentaria Brix tenés envíos gratis en algunos productos.
         </p>
