@@ -5,6 +5,7 @@ import ChatBot from 'react-simple-chatbot'
 import { ThemeProvider } from 'styled-components';
 import { useUser } from '@clerk/nextjs';
 import ChatComponent from "./ChatComponent";
+import { useRouter } from "next/navigation";
 
 const DiseñoChat = {
     background: '#f5f8fb',
@@ -22,6 +23,7 @@ const DiseñoChat = {
   export default function MainChatBot({ onClose }) {
 
     const { user } = useUser(); 
+    const router = useRouter()
     // Usar la propiedad imageUrl para obtener la imagen de perfil
     const userProfileImage = user && user.imageUrl ? user.imageUrl : 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgLTIwOC41IDIxIDEwMCAxMDAiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9Ii0yMDguNSAyMSAxMDAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGc+PGNpcmNsZSBjeD0iLTE1OC41IiBjeT0iNzEiIGZpbGw9IiNGNUVFRTUiIGlkPSJNYXNrIiByPSI1MCIvPjxnPjxkZWZzPjxjaXJjbGUgY3g9Ii0xNTguNSIgY3k9IjcxIiBpZD0iTWFza18yXyIgcj0iNTAiLz48L2RlZnM+PGNsaXBQYXRoIGlkPSJNYXNrXzRfIj48dXNlIG92ZXJmbG93PSJ2aXNpYmxlIiB4bGluazpocmVmPSIjTWFza18yXyIvPjwvY2xpcFBhdGg+PHBhdGggY2xpcC1wYXRoPSJ1cmwoI01hc2tfNF8pIiBkPSJNLTEwOC41LDEyMXYtMTRjMCwwLTIxLjItNC45LTI4LTYuN2MtMi41LTAuNy03LTMuMy03LTEyICAgICBjMC0xLjcsMC02LjMsMC02LjNoLTE1aC0xNWMwLDAsMCw0LjYsMCw2LjNjMCw4LjctNC41LDExLjMtNywxMmMtNi44LDEuOS0yOC4xLDcuMy0yOC4xLDYuN3YxNGg1MC4xSC0xMDguNXoiIGZpbGw9IiNFNkMxOUMiIGlkPSJNYXNrXzNfIi8+PGcgY2xpcC1wYXRoPSJ1cmwoI01hc2tfNF8pIj48ZGVmcz48cGF0aCBkPSJNLTEwOC41LDEyMXYtMTRjMCwwLTIxLjItNC45LTI4LTYuN2MtMi41LTAuNy03LTMuMy03LTEyYzAtMS43LDAtNi4zLDAtNi4zaC0xNWgtMTVjMCwwLDAsNC42LDAsNi4zICAgICAgIGMwLDguNy00LjUsMTEuMy03LDEyYy02LjgsMS45LTI4LjEsNy4zLTI4LjEsNi43djE0aDUwLjFILTEwOC41eiIgaWQ9Ik1hc2tfMV8iLz48L2RlZnM+PGNsaXBQYXRoIGlkPSJNYXNrXzVfIj48dXNlIG92ZXJmbG93PSJ2aXNpYmxlIiB4bGluazpocmVmPSIjTWFza18xXyIvPjwvY2xpcFBhdGg+PHBhdGggY2xpcC1wYXRoPSJ1cmwoI01hc2tfNV8pIiBkPSJNLTE1OC41LDEwMC4xYzEyLjcsMCwyMy0xOC42LDIzLTM0LjQgICAgICBjMC0xNi4yLTEwLjMtMjQuNy0yMy0yNC43cy0yMyw4LjUtMjMsMjQuN0MtMTgxLjUsODEuNS0xNzEuMiwxMDAuMS0xNTguNSwxMDAuMXoiIGZpbGw9IiNENEIwOEMiIGlkPSJoZWFkLXNoYWRvdyIvPjwvZz48L2c+PHBhdGggZD0iTS0xNTguNSw5NmMxMi43LDAsMjMtMTYuMywyMy0zMWMwLTE1LjEtMTAuMy0yMy0yMy0yM3MtMjMsNy45LTIzLDIzICAgIEMtMTgxLjUsNzkuNy0xNzEuMiw5Ni0xNTguNSw5NnoiIGZpbGw9IiNGMkNFQTUiIGlkPSJoZWFkIi8+PC9nPjwvc3ZnPg=='; 
 
@@ -51,7 +53,7 @@ const DiseñoChat = {
             headerTitle="BrixBot"
             userAvatar={userProfileImage} 
             placeholder={"Escribe el mensaje"}
-            // floating={true}
+              // floating={true}
             //  speechSynthesis={{enable: true}}
             steps={[
               {
@@ -129,7 +131,9 @@ const DiseñoChat = {
               },
               {
                 id: 'guiaTallas',
-                message: 'Puedes consultar nuestra guía de talles aquí: [Enlace a guía de tallas].',
+                 message: 'Puedes consultar nuestra guía de talles aquí: [Enlace a guía de tallas].',
+              //   component: <ChatComponent  />,
+              // asMessage: true,
                 trigger: 'preguntaVuelta',
               },
               {
@@ -156,7 +160,17 @@ const DiseñoChat = {
               },
               {
                 id: 'devoluciones',
-                message: 'Nuestra política de devoluciones permite que devuelvas productos dentro de los 30 días posteriores a la compra, siempre que estén en su estado original.',
+                
+                component:(
+                  <div>
+                    <p>Nuestra política de devoluciones permite que devuelvas productos dentro de los 30 días posteriores a la compra, siempre que estén en su estado original. para conocer mas visita la siguiente seccion:</p>
+                    <button onClick={()=> router.push('/privacy')}
+                       className="block text-md  py-2 px-3  text-[#3B82F6] font-bold rounded transition-transform duration-300 transform hover:scale-110 hover:text-blue-700 dark:text-[#E2E9FF] dark:hover:bg-gray-700 dark:hover:text-white">
+                      Politica de devoluciones
+                    </button>
+                  </div>
+                ),
+                // message: 'Nuestra política de devoluciones permite que devuelvas productos dentro de los 30 días posteriores a la compra, siempre que estén en su estado original.',
                 trigger: 'preguntaVuelta',
               },
               {

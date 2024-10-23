@@ -44,6 +44,52 @@ const SecurityPolicies = () => {
             uso, alteración, acceso no autorizado y robo de los Datos Personales
             facilitados.
           </p>
+          <p className="text-gray-600 dark:text-gray-300 mt-10">
+          Los productos pueden devolverse gratis, sin importar el motivo. 
+
+Solo hay algunos productos específicos que no tienen devolución. En ese caso, vas a poder acordar una solución con el vendedor iniciando un reclamo si lo necesitás.
+
+¿Cuáles son los requisitos para devolver un producto?
+Tiempo de cobertura
+Condiciones del producto
+Nuevos
+
+Tienes 30 días corridos para devolverlo desde que te llegó.
+
+Usados
+
+Tienes 10 días corridos para devolverlo desde que te llegó.
+
+Si te arrepentiste de comprar el producto o es diferente de lo que pediste:
+
+- Debe estar en perfecto estado y no tener marcas de uso.
+
+- Debe tener sus accesorios, manuales y etiquetas.
+
+- Debe estar en el envoltorio original de la marca.
+
+- Si es celular, notebook, tablet o smartwatch no debe tener claves que impidan su uso, ni contener datos o fotos personales.
+
+Si el producto tiene un problema o está incompleto:
+
+- Cuando lo devuelvas y lo revisemos, debe estar en las mismas condiciones que describas al reclamar.
+
+- Debe tener todos sus accesorios tal cual llegaron.
+
+¿Qué pasa si devuelvo un producto que no cumple con estas condiciones?
+Dependiendo del resultado de la revisión que hagamos del producto, podríamos enviarlo de vuelta o descontar una parte del reembolso.
+
+¿Cuándo me reembolsan el dinero?
+Haremos el reembolso 3 días hábiles después de que llegue el producto, una vez que revisemos si cumple con las políticas de devolución. Sin embargo, algunas veces podemos hacer el reembolso ni bien entregás el producto, para que tengas el dinero más rápido.
+
+Una vez que hagamos el reembolso, vas a ver todos los detalles sobre el monto, lugar y día de acreditación del dinero desde el estado de tu compra. 
+
+Para más información podés consultar los plazos de acreditación de cada medio de pago.
+
+¿Dónde me reembolsarán el dinero?
+Reembolsamos el dinero en el mismo medio de pago que usaste para comprar. 
+En algunos casos, hacemos el reembolso en Mercado Pago si pagaste con tarjeta de crédito en una cuota o débito sin carrito de compras, para que recibas el dinero de forma inmediata, sin esperar.
+          </p>
         </section>
       </main>
     </div>

@@ -7,6 +7,7 @@ const ChatComponent = ({ steps }) => {
     const [busqueda, setBusqueda] = useState("");
     const [nombreCurado, setNombreCurado] = useState("");
     const router = useRouter();
+    // const [isTallesSelected, setIsTallesSelected] = useState(false);
 
     useEffect(() => {
         if (seleccion) {
@@ -30,6 +31,13 @@ const ChatComponent = ({ steps }) => {
         router.push(`${process.env.NEXT_PUBLIC_URL}/category/${busqueda}`);
     };
 
+    // const handleClick = () => {
+    //     if (!isTallesSelected) {
+    //         router.push(`${process.env.NEXT_PUBLIC_URL}/category/${busqueda}`);
+    //     }
+    // };
+
+
 
     return (
         <div>
@@ -38,6 +46,18 @@ const ChatComponent = ({ steps }) => {
                 {nombreCurado}
             </strong>
         </div>
+    //     <div>
+    //     <p>Explora los productos disponibles en siguiente link:</p>
+    //     {!isTallesSelected ? (
+    //         <strong onClick={handleClick} className="cursor-pointer underline hover:text-black text-base">
+    //             {nombreCurado}
+    //         </strong>
+    //     ) : (
+    //         <strong onClick={() => router.push('/talles')} className="cursor-pointer underline hover:text-black text-base">
+    //             Ir a talles
+    //         </strong>
+    //     )}
+    // </div>
     );
 };
 
