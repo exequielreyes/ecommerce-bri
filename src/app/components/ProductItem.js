@@ -28,14 +28,14 @@ function ProductItem({ product, onAddToCart }) {
     <Link href={`/products/${slug}`}>
       <div
         className='p-2 md:p-6 flex flex-col items-center 
-    justify-center gap-3 py-4 border border-gray-300 
+    justify-center gap-3 py-4 border border-gray-300 dark:border-gray-700 dark:text-[#B4B4B4]
     shadow-none h-full transition-all duration-300 
     ease-in-out hover:shadow-lg relative group'
         style={{ minHeight: '704px' }}
       // style={{maxWidth: '500px', margin: 'auto', minHeight: '460px' }} // Fijar el ancho máximo
       >
         {discount > 0 && (
-          <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-[12px] z-50 rounded-full h-14 w-14 flex justify-center items-center">
+          <div className="absolute top-2 right-2 bg-red-500 text-white  px-2 py-1 text-[12px] z-50 rounded-full h-14 w-14 flex justify-center items-center">
             <p className="text-center">{discount}%OFF</p>
           </div>
         )}

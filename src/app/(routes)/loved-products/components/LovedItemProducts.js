@@ -26,10 +26,10 @@ function LovedItemProduct({ product, onAddToCart }) {
   const finalPrice = price - discountAmount;
 
   return (
-    <div className="flex justify-center mb-4">
+    <div className="flex justify-center mb-4 ">
       {/* Agregar Link para redirigir al detalle del producto */}
-        <div className="bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 shadow-md hover:shadow-lg rounded-lg flex flex-col md:flex-row items-center p-4 w-full max-w-md transition-transform duration-300 ease-in-out transform hover:scale-104">
-      <Link href={`/products/${product.attributes.slug}`} className="flex justify-center w-full items-center">
+        <div className="bg-gradient-to-r from-gray-50 to-gray-100 border   border-gray-200 shadow-md hover:shadow-lg rounded-lg flex flex-col md:flex-row items-center p-4 w-full max-w-md transition-transform duration-300 ease-in-out transform hover:scale-104 ">
+      <Link href={`/products/${product.attributes.slug}`} className="flex justify-center w-full items-center ">
           <Image
             src={imageUrl}
             alt={product.attributes.productName}

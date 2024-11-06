@@ -37,8 +37,10 @@ const CategoryList = () => {
     if (width < 640) {
       setItemsToShow(1);
     } else if (width < 768) {
-      setItemsToShow(3);
+      setItemsToShow(2); 
     } else if (width < 1024) {
+      setItemsToShow(3);
+    } else if (width < 1280) {
       setItemsToShow(4);
     } else {
       setItemsToShow(5);
@@ -90,10 +92,13 @@ const CategoryList = () => {
     setIsDragging(false);
   };
 
+
+  // const limitedProducts = categories.slice(currentIndex, currentIndex + itemsToShow);
+
   return (
-    <div className="mt-10 md:px-52">
-      <h3 className="text-3xl font-bold  text-center sm:pb-3">Elige tu categoría favorita</h3>
-      <div className="relative">
+    <div className="mt-10 xl:px-52 lg:px-24 md:px-10 sm:px-12  dark:text-[#B4B4B4] ">
+      <h3 className="text-3xl font-bold  text-center sm:pb-3 mb-10">Elige tu categoría favorita</h3>
+      <div className="relative  ">
         <Carousel
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
@@ -112,16 +117,16 @@ const CategoryList = () => {
                 Array(itemsToShow)
                   .fill()
                   .map((_, index) => (
-                    <Skeleton key={index} className="h-[200px] w-full" />
+                    <Skeleton key={index} className="h-[300px] w-full" />
                   ))
               ) : categories.length > 0 ? (
                 categories.map((category) => (
-                  <div className="flex-shrink-0 px-1" style={{ width: `${100 / itemsToShow}%` }} key={category.id}>
+                  <div className="flex-shrink-0 flex justify-center " style={{ width: `${100 / itemsToShow}%` }} key={category.id}>
                     <Link
                       href={`/category/${category.attributes.slug}`}
                       className="flex flex-col relative overflow-hidden bg-no-repeat bg-cover rounded-lg"
                     >
-                      <div className="h-full w-full relative">
+                      <div className="h-full w-full relative sm:w-3/4 md:w-full">
                         <Image
                           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${category.attributes.mainImage.data.attributes.url}`}
                           width={358}
@@ -130,7 +135,7 @@ const CategoryList = () => {
                           layout="responsive"
                           // objectFit="cover"
                           style={{ minHeight: "359px" }}
-                          className="w-full h-auto transition duration-200 ease-in-out rounded-lg hover:scale-110 object-contain"
+                          className="w-full h-auto transition duration-200 ease-in-out rounded-lg hover:scale-110 object-contain "
                         />
                       </div>
                       <p

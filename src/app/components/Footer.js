@@ -1,81 +1,65 @@
-'use client'
+'use client';
 import Link from 'next/link';
-import { Box, Container, Typography, List, ListItem, Divider } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Inter } from "next/font/google";
+
 
 const dataFooter = [
   { id: 1, name: "Sobre nosotros", link: "/about" },
   { id: 2, name: "Contacto", link: "/contact" },
   { id: 3, name: "Mi cuenta", link: "/user-profile" },
   { id: 4, name: "Políticas de privacidad", link: "/privacy" },
+  { id: 5, name: "Faq", link: "/Faq" },
+
 ];
 
-const inter = Inter({subsets:['latin']})
+
 
 function Footer() {
-
-  const [ isLogin, setIsLogin ] = useState(false);
-
-    const pathname = usePathname(); // Obtenemos la ruta actual
+  const [isLogin, setIsLogin] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Actualizamos el estado basado en la ruta actual
     const isAuthPage = pathname.includes('sign-in') || pathname.includes('sign-up');
     setIsLogin(isAuthPage);
-    
-  }, [pathname]); // Cada vez que la ruta cambie, ejecutamos este efecto
+  }, [pathname]);
+
   return (
-    !isLogin &&(
-    <Box component="footer" mt={4}  className='bg-slate-100 dark:bg-[#19191A]'>
-      <Container maxWidth="xl" sx={{ p: 4 }}  >
-        <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
-          <Typography variant="h6" component="p" className={`${inter.className} text-[#818181] dark:text-gray-500`}>
-          Indumentary<strong>Brix</strong> 
-          </Typography>
+    !isLogin && (
+      <footer className="mt-4 bg-slate-100 dark:bg-[#19191A]">
+        <div className="max-w-screen-xl mx-auto p-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <p className={` text-[#818181] dark:text-gray-500 text-lg`}>
+              Indumentary<strong>Brix</strong>
+            </p>
 
-          {/* Lista para los enlaces del footer */}
-          <List sx={{ display: 'flex', flexDirection: 'row', p: 0, m: 0 }}>
-            {dataFooter.map((data) => (
-              <ListItem key={data.id} sx={{ p: 0, mx: 2, width: 'auto'}}>
-                <Link href={data.link} passHref>
-                  <Typography
-                  className={`${inter.className} text-[#818181] hover:text-black dark:text-gray-500 dark:hover:text-white`}
-                    component="span"  // Evitamos que Typography cree un <a> innecesario
-                    variant="body2"
-                    sx={{ textDecoration: 'none'}}
-                  >
+            <ul className="flex flex-col sm:flex-row items-center p-0 m-0 mt-4 sm:mt-0">
+              {dataFooter.map((data) => (
+                <li key={data.id} className="mx-0 sm:mx-2 my-2 sm:my-0">
+                  <Link href={data.link} className={` text-[#818181] hover:text-black dark:text-gray-500 dark:hover:text-white text-sm no-underline`}>
                     {data.name}
-                  </Typography>
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <Divider sx={{ my: 6, width: '50%', mx: 'auto', borderColor: 'gray.300' }} />
+          <hr className="my-6 w-1/2 mx-auto dark:border-gray-700  border-gray-300 " />
 
-
-        <Typography variant="body2" color="textSecondary" align="center" className={`${inter.className} text-[#818181] dark:text-gray-500` }>
-          &copy; 2024{' '}
-          <Link href="#" passHref>
-            <Typography
-              component="span"  // Cambiamos el componente para evitar el anidamiento de <a>
-              variant="body2"
-              sx={{ textDecoration: 'none'}}
-            >
+          <p className={` text-center text-[#818181] dark:text-gray-500 text-sm`}>
+            &copy; 2024{' '}
+            <Link href="#" className="text-[#818181] hover:text-black dark:hover:text-white no-underline">
               IndumentaryBrix
-            </Typography>
-          </Link>
-          . Todos los derechos reservados.
-        </Typography>
-      </Container>
-    </Box>
+            </Link>
+            . Todos los derechos reservados.
+          </p>
+        </div>
+      </footer>
     )
   );
 }
 
 export default Footer;
+
 
 

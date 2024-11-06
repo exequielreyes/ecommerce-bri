@@ -121,9 +121,9 @@ const InfoProduct = ({ product }) => {
   const handleCloseModal = () => setOpenModal(false);
 
   return (
-    <div>
+    <div  className="dark:text-[#B4B4B4] p-6 md:p-0">
       {/* Nombre del producto y origen */}
-      <div className="flex justify-between mb-[1rem]"  >
+      <div className="flex justify-between   mb-4"  >
         <h2  className="font-bold text-[24px]" >
           {productName}
         </h2>
@@ -222,7 +222,7 @@ const InfoProduct = ({ product }) => {
           <Button
             variant="outlined"
             startIcon={<Ruler />}
-            sx={{ mt: 2 }}
+            sx={{ mt: 1, mb:1, fontSize:'11px' }}
             onClick={handleOpenModal}
           >
             Guía de talles
@@ -295,7 +295,7 @@ const InfoProduct = ({ product }) => {
       </div>
 
       {/* Botones de "Añadir al carrito" y "Comprar" */}
-      <Box sx={{ display: "flex", gap: 4 }}>
+      <Box sx={{ display: "flex", gap: 4 }}  className="p-6 md:p-0" >
         <Button
           variant={added ? "contained" : "outlined"}
           color={added ? "success" : "primary"}

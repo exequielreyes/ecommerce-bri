@@ -30,7 +30,7 @@ function BrandList({ brandList }) {
     return () => clearInterval(autoScroll); // Limpiar intervalo cuando el componente se desmonte
   }, [brandList]);
   return (
-    <div>
+    <div className='dark:text-[#B4B4B4]'>
       <h2 className='text-3xl mb-5 mt-24 text-center font-bold'>Navega por marcas</h2>
 
       <Carousel>
@@ -45,7 +45,7 @@ function BrandList({ brandList }) {
             <Link 
             key={index} 
             href={`/brand-category/${brand.attributes.slug}`}
-             className="min-w-[14.28%]  group cursor-pointer"
+               className="group cursor-pointer min-w-[50%] sm:min-w-[33.33%] md:min-w-[20%] lg:min-w-[14.28%]"
             >
             <div >
               {imageUrl ? (
@@ -54,7 +54,7 @@ function BrandList({ brandList }) {
                   width={200}
                   height={150}
                   alt={brand.attributes.name}
-                  className='hover:scale-110 transition-all ease-in-out h-[107px] object-contain dark:invert  '
+                  className='hover:scale-110 transition-all ease-in-out h-[107px] object-contain inv  dark:invert  '
                 //   layout='responsive'
                 //   style={{ minHeight: "107px" }} // Altura mínima para la imagen
                 />

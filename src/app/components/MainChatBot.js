@@ -6,25 +6,38 @@ import { ThemeProvider } from 'styled-components';
 import { useUser } from '@clerk/nextjs';
 import ChatComponent from "./ChatComponent";
 import { useRouter } from "next/navigation";
-
-const DiseñoChat = {
-    background: '#f5f8fb',
-    fontFamily: 'Inter, sans-serif',
-    headerBgColor: '#3B82F6',
-    headerFontColor: '#fff',
-    headerFontSize: '15px',
-    botBubbleColor: '#3B82F6',
-    botFontColor: '#fff',
-    userBubbleColor: '#fff',
-    userFontColor: '#4a4a4a',
-  };
+import { useTheme } from "next-themes";
 
 
-  export default function MainChatBot({ onClose }) {
 
-    const { user } = useUser(); 
-    const router = useRouter()
-    // Usar la propiedad imageUrl para obtener la imagen de perfil
+export default function MainChatBot() {
+  
+  const { user } = useUser(); 
+  const router = useRouter()
+  const { theme } = useTheme();
+
+  const  isDarkMode = theme === 'dark'
+
+
+
+
+  // Usar la propiedad imageUrl para obtener la imagen de perfil
+  const DiseñoChat = {
+      background:  isDarkMode ? '#18181b' :  '#f5f8fb' , //fondo
+      fontFamily: 'Inter, sans-serif',
+      headerBgColor: '#3B82F6', //header
+      headerFontColor: '#fff',
+      headerFontSize: '15px',
+      botBubbleColor: '#3B82F6', //mensajes
+      botFontColor: '#fff', //letra de mensajes
+      userBubbleColor: '#fff', //letra de usuario
+      userFontColor: '#4a4a4a', //color de letra de usuario
+    };
+
+
+
+
+    
     const userProfileImage = user && user.imageUrl ? user.imageUrl : 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgLTIwOC41IDIxIDEwMCAxMDAiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9Ii0yMDguNSAyMSAxMDAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGc+PGNpcmNsZSBjeD0iLTE1OC41IiBjeT0iNzEiIGZpbGw9IiNGNUVFRTUiIGlkPSJNYXNrIiByPSI1MCIvPjxnPjxkZWZzPjxjaXJjbGUgY3g9Ii0xNTguNSIgY3k9IjcxIiBpZD0iTWFza18yXyIgcj0iNTAiLz48L2RlZnM+PGNsaXBQYXRoIGlkPSJNYXNrXzRfIj48dXNlIG92ZXJmbG93PSJ2aXNpYmxlIiB4bGluazpocmVmPSIjTWFza18yXyIvPjwvY2xpcFBhdGg+PHBhdGggY2xpcC1wYXRoPSJ1cmwoI01hc2tfNF8pIiBkPSJNLTEwOC41LDEyMXYtMTRjMCwwLTIxLjItNC45LTI4LTYuN2MtMi41LTAuNy03LTMuMy03LTEyICAgICBjMC0xLjcsMC02LjMsMC02LjNoLTE1aC0xNWMwLDAsMCw0LjYsMCw2LjNjMCw4LjctNC41LDExLjMtNywxMmMtNi44LDEuOS0yOC4xLDcuMy0yOC4xLDYuN3YxNGg1MC4xSC0xMDguNXoiIGZpbGw9IiNFNkMxOUMiIGlkPSJNYXNrXzNfIi8+PGcgY2xpcC1wYXRoPSJ1cmwoI01hc2tfNF8pIj48ZGVmcz48cGF0aCBkPSJNLTEwOC41LDEyMXYtMTRjMCwwLTIxLjItNC45LTI4LTYuN2MtMi41LTAuNy03LTMuMy03LTEyYzAtMS43LDAtNi4zLDAtNi4zaC0xNWgtMTVjMCwwLDAsNC42LDAsNi4zICAgICAgIGMwLDguNy00LjUsMTEuMy03LDEyYy02LjgsMS45LTI4LjEsNy4zLTI4LjEsNi43djE0aDUwLjFILTEwOC41eiIgaWQ9Ik1hc2tfMV8iLz48L2RlZnM+PGNsaXBQYXRoIGlkPSJNYXNrXzVfIj48dXNlIG92ZXJmbG93PSJ2aXNpYmxlIiB4bGluazpocmVmPSIjTWFza18xXyIvPjwvY2xpcFBhdGg+PHBhdGggY2xpcC1wYXRoPSJ1cmwoI01hc2tfNV8pIiBkPSJNLTE1OC41LDEwMC4xYzEyLjcsMCwyMy0xOC42LDIzLTM0LjQgICAgICBjMC0xNi4yLTEwLjMtMjQuNy0yMy0yNC43cy0yMyw4LjUtMjMsMjQuN0MtMTgxLjUsODEuNS0xNzEuMiwxMDAuMS0xNTguNSwxMDAuMXoiIGZpbGw9IiNENEIwOEMiIGlkPSJoZWFkLXNoYWRvdyIvPjwvZz48L2c+PHBhdGggZD0iTS0xNTguNSw5NmMxMi43LDAsMjMtMTYuMywyMy0zMWMwLTE1LjEtMTAuMy0yMy0yMy0yM3MtMjMsNy45LTIzLDIzICAgIEMtMTgxLjUsNzkuNy0xNzEuMiw5Ni0xNTguNSw5NnoiIGZpbGw9IiNGMkNFQTUiIGlkPSJoZWFkIi8+PC9nPjwvc3ZnPg=='; 
 
 
@@ -40,20 +53,22 @@ const DiseñoChat = {
     }
 
     return (
-      <div className="relative">
+      <div className="relative ">
         
         <ThemeProvider theme={DiseñoChat}>
-       <button 
+       {/* <button 
           onClick={onClose} 
           className=" absolute top-[0.45rem] -right-[0.70rem]  text-white hover:text-black p-2 rounded-full z-[1000]" // Estilos para el botón de cerrar
         >
           <X />
-        </button>
+        </button> */}
           <ChatBot
             headerTitle="BrixBot"
             userAvatar={userProfileImage} 
             placeholder={"Escribe el mensaje"}
-              // floating={true}
+            floating={true}
+            width={'450px'}
+            // height={'500px'}
             //  speechSynthesis={{enable: true}}
             steps={[
               {
@@ -83,8 +98,10 @@ const DiseñoChat = {
                   { value: "b", label: 'Buscar productos', trigger: 'buscarProductos' },
                   // { value: 'recomendaciones', label: 'Obtener recomendaciones', trigger: 'recomendaciones' },
                    { value: "t", label: 'Información sobre talles', trigger: 'talles' },
-                   { value: "e", label: 'Información sobre envíos', trigger: 'envios' },
+                  //  { value: "e", label: 'Información sobre envíos', trigger: 'envios' },
                    { value: "d", label: 'Política de devoluciones', trigger: 'devoluciones' },
+                   { value: "p", label: 'Preguntas frecuentes', trigger: 'preguntas' },
+
                   // { value: 'contacto', label: 'Contactar con soporte', trigger: 'contacto' },
                 ],
               },
@@ -183,24 +200,24 @@ const DiseñoChat = {
               //   component: <ChatComponent  />,
               // asMessage: true,
               },
-              {
-                id: 'envios',
-                message: `Los envíos se realizan en toda la República Argentina.
-                          La entrega se realizará en la dirección que nos indiques al momento de realizar tu compra, de lunes a viernes, entre las 8 y las 00 hs, con excepción de los feriados nacionales. Cuando la fecha de entrega coincida con un día feriado, se la pasará al próximo día hábil.`,
-                trigger: 'opcionesEnvio',
-              },
-              {
-                id: 'opcionesEnvio',
-                options: [
-                  { value: 'costos', label: 'Costos de envío', trigger: 'costosEnvio' },
-                  { value: 'tiempo', label: 'Tiempo de entrega', trigger: 'tiempoEnvio' },
-                ],
-              },
-              {
-                id: 'costosEnvio',
-                message: 'El costo del envío varía según la ubicación. Los envíos dentro del país tienen un costo de $X',
-                trigger: 'preguntaVuelta',
-              },
+              // {
+              //   id: 'envios',
+              //   message: `Los envíos se realizan en toda la República Argentina.
+              //             La entrega se realizará en la dirección que nos indiques al momento de realizar tu compra, de lunes a viernes, entre las 8 y las 00 hs, con excepción de los feriados nacionales. Cuando la fecha de entrega coincida con un día feriado, se la pasará al próximo día hábil.`,
+              //   trigger: 'opcionesEnvio',
+              // },
+              // {
+              //   id: 'opcionesEnvio',
+              //   options: [
+              //     { value: 'costos', label: 'Costos de envío', trigger: 'costosEnvio' },
+              //     { value: 'tiempo', label: 'Tiempo de entrega', trigger: 'tiempoEnvio' },
+              //   ],
+              // },
+              // {
+              //   id: 'costosEnvio',
+              //   message: 'El costo del envío varía según la ubicación. Los envíos dentro del país tienen un costo de $X',
+              //   trigger: 'preguntaVuelta',
+              // },
               {
                 id: 'tiempoEnvio',
                 message: 'El tiempo de entrega depende de la disponibilidad del producto, del tiempo de envío y de la aprobación del medio de pago. Los días que se indiquen son estimativos, y corren siempre a partir del momento en que el pedido se despacha. ',
@@ -222,6 +239,104 @@ const DiseñoChat = {
                 // message: 'Nuestra política de devoluciones permite que devuelvas productos dentro de los 30 días posteriores a la compra, siempre que estén en su estado original.',
                 trigger: 'preguntaVuelta',
               },
+
+              {
+                id:'preguntas',
+                  options:[
+                    { value: 'pagos', label: 'Pagos', trigger: 'preguntasFrecuentes' },
+                    { value: 'envio', label: 'Envio y Retiro', trigger: 'preguntasFrecuentes' },
+                    // { value: '4', label: 'Mujer', trigger: 'explicacionMujer' },
+                    // { value: '5', label: 'Mujer', trigger: 'explicacionMujer' },
+                  ],
+                  // trigger: 'preguntaVuelta',
+              },
+
+
+              {
+                id:'preguntasFrecuentes',
+                options:[
+                  {value:'p' , label:'¿Cuáles son los medios de pago disponibles?', trigger:'pago'},
+                  {value:'t' , label:'¿Es seguro pagar con mi tarjeta de crédito en IndumentaryBrix?' , trigger:'tarjeta'},
+                  {value:'a' , label:'¿Cómo sé que mi pago fue acreditado?' , trigger:'acreditado'},
+
+                ]
+              },
+
+              {
+                id: 'pago',
+                message: 'Podrás abonar tus pedidos con Tarjeta de Crédito/debito o por Mercado Pago a través de Cupones de Pago.',
+                trigger:'preguntaVuelta',
+              },
+              {
+                id: 'tarjeta',
+                message: 'Sí, es seguro. Entendemos que la seguridad de tu información personal es de suma importancia para vos. Cumplimos con el estándar internacional de protección de datos, para que tu información personal y de tarjeta de crédito, esté protegida de accesos no autorizados.',
+                trigger:'preguntaVuelta',
+              },
+              
+              {
+                id: 'acreditado',
+                message: 'Una vez que tu pago haya sido acreditado correctamente por administración, recibirás un correo electrónico informándote el número de acreditación y el número de factura correspondiente.',
+                trigger:'preguntaVuelta',
+              },
+              
+              {
+                id:'preguntasFrecuentes',
+                options:[
+                  {value:'e' , label:'¿Cuáles son las formas de envío?', trigger:'envio'},
+                  {value:'c' , label:'¿Cuál es el costo del envío?' , trigger:'costo'},
+                   {value:'t' , label:'¿Cuánto tarda en llegar mi pedido?' , trigger:'tiempo'},
+                   {value:'d' , label:'¿En qué días y horarios entregan los pedidos?' , trigger:'horarios'},
+                   {value:'o' , label:'¿Puede recibir mi pedido otra persona?' , trigger:'otro'},
+
+
+
+                ]
+              },
+
+              {
+                id: 'envio',
+                message: 'Envíos a domicilio: Envíos a cualquier punto del país',
+                trigger:'preguntaVuelta',
+              },
+              {
+                id: 'costo',
+                component:(
+                  <div className="bg-[#3b82f6]  p-4">
+                  <div className="max-w-lg mx-auto">
+                    <p className="text-md">El costo de envio puede variar dependiendo de tu provincia, puede ver en esta lista los precios de envio para tu provincia</p>
+                    <button onClick={()=> router.push('/Faq')}
+                       className="block text-[18px]  py-2   text-white font-bold rounded transition-transform duration-300 transform hover:scale-110  dark:text-[#E2E9FF] dark:hover:bg-gray-700 dark:hover:text-white">
+                      Costo de envio
+                    </button>
+                  </div>
+                  </div>
+                ),
+                trigger:'preguntaVuelta',
+              },
+
+              {
+                id: 'tiempo',
+                message: 'El tiempo de entrega depende de la disponibilidad del producto, del tiempo de envío y de la aprobación del medio de pago. Los días que se indiquen son estimativos, y corren siempre a partir del momento en que el pago es aprobado. Los envíos se realizan en toda la República Argentina',
+                trigger:'preguntaVuelta',
+              },
+              {
+                id: 'horarios',
+                message: 'Las entregas a domicilio se realizan de lunes a viernes de 8 hs a 00 hs. No se entregan pedidos fines de semana ni feriados.',
+                trigger:'preguntaVuelta',
+              },
+              {
+                id: 'otro',
+                message: 'Si elegiste envío a domicilio, tu pedido puede recibirlo cualquier persona mayor de 18 años, que se encuentre en el domicilio acordado, presentando documento de identidad.',
+                trigger:'preguntaVuelta',
+              },
+
+
+
+             
+
+
+
+
               {
                 id: 'contacto',
                 message: 'Si tienes algún problema, puedes contactarnos por email a contacto@tiendaropa.com o llamar al +123 456 789.',

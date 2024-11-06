@@ -26,18 +26,18 @@ function Slider() {
   }, []);
 
   return (
-    <div className="relative text-white text-[20px] w-full mx-auto">
+    <div className="relative text-white text-[20px] w-full mx-auto flex justify-center">
       <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false} interval={6000} transitionTime={1500} >
         {sliderList.length > 0 ? (
           sliderList.map((slider, index) => (
-            <div key={index}>
+            <div key={index} className="flex justify-center">
               {slider.attributes.image?.data[0]?.attributes?.url ? (
                 <Image
                   src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${slider.attributes.image.data[0].attributes.url}`}
                   alt={slider.attributes.name || "slider"}
                   width={1920}
                   height={1080}
-                  className="w-full h-[577px] object-cover"
+                 className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] xl:h-[575px] object-cover"
                 />
               ) : (
                 <p>No image available</p>

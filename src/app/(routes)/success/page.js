@@ -1,11 +1,20 @@
 'use client'
+import { CartContext } from '@/context/CartContext'
 import { Button } from '@mui/material'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { useContext } from 'react'
 
 
 function PageSuccess() {
     const router = useRouter()
+    const { clearCart } = useContext(CartContext)
+
+    useEffect(() => {
+        // Vacía el carrito cuando se carga la página de éxito
+        clearCart();
+    }, []);
   return (
     <div className='max-w-5xl p-4 mx-auto sm:py-16 sm:px-24'>
         <div className=' flex flex-col-reverse gap-2 sm:flex-row'>

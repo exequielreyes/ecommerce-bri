@@ -6,7 +6,9 @@ import Slider from "./components/Slider";
 import BrandList from "./components/BrandList";
 import CategoryList from "./components/CategoryList";
 import FeaturesSection from "./components/FeaturesSection";
-import ChatBotButton from "./components/ChatBotButton";
+// import ChatBotButton from "./components/ChatBotButton";
+import MainChatBot from "./components/MainChatBot";
+
 import ScrollButton from "./components/ScrollButton";
 
 export default async function Home() {
@@ -26,16 +28,16 @@ export default async function Home() {
 
       {/* Productos destacados*/}
       <div className=" bg-[#f1f1f1] dark:bg-[#19191A]">
-        <div className="md:px-52 py-8">
+        {/* <div className="md:px-52 py-8"> */}
           <ProductList productList={productList} />
-        </div>
+        {/* </div> */}
       </div>
       <div className="md:px-16">
         <BannerDiscount />
 
         {/* <Categorias /> */}
-        <CategoryList categoryList={categoryList} />
       </div>
+        <CategoryList categoryList={categoryList} />
       <div>
         <BannerProduct />
       </div>
@@ -52,7 +54,8 @@ export default async function Home() {
 
 
       {/* ChatBot*/}
-        <ChatBotButton />
+      <MainChatBot />
+        {/* <ChatBotButton /> */}
       
     </>
   );

@@ -18,7 +18,8 @@ import {
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/theme-provider";
-import ChatBotButton from "./components/ChatBotButton";
+// import ChatBotButton from "./components/ChatBotButton";
+import MainChatBot from "./components/MainChatBot"
 
 
 
@@ -51,7 +52,8 @@ export default function RootLayout({ children, title }) {
             </UseLovedProductsProvider>
           </CartProvider>
           </ThemeProvider>
-          <ChatBotButton />
+          {/* <ChatBotButton /> */}
+          <MainChatBot />
         </body>
       </html>
     </ClerkProvider>

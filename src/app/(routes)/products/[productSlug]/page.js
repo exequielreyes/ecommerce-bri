@@ -133,8 +133,8 @@ function Page() {
 
 
   return (
-    <div className="max-w-6xl mt-8 mx-auto sm:pb-32">
-      <div className="flex items-center mb-11">
+    <div className="max-w-6xl mt-8 mx-auto sm:pb-32 overflow-x-hidden">
+      <div className="flex items-center mb-11 px-6 md:p-0">
         <ol className="flex items-center gap-1 text-sm text-gray-600">
           <li>
             <button onClick={() => router.back()} className="block transition hover:text-blue-500">
@@ -190,7 +190,7 @@ function Page() {
             <p>No hay imágenes disponibles.</p>
           )}
         </div>
-        <div className="sm:px-12 mb-20">
+        <div className="sm:px-12">
           <InfoProduct product={product} />
         </div>
       </div>
@@ -200,7 +200,7 @@ function Page() {
       </div>
 
       {/* Vendedor*/}
-      <div className="max-w-6xl mt-8 mx-auto">
+      {/* <div className="max-w-6xl mt-8 mx-auto">
         <h3 className="text-xl font-semibold mb-4">Preguntas al vendedor</h3>
 
         <form onSubmit={handleQuestionSubmit} className="mb-6">
@@ -257,7 +257,7 @@ function Page() {
             </ul>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

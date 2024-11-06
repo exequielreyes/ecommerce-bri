@@ -7,7 +7,7 @@ function BannerProduct() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-transparent sm:bg-transparent"></div>
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-[500px] lg:items-center lg:px-8">
-        <div className="max-w-xl text-start ltr:sm:text-left rtl:sm:text-right">
+        <div className="max-w-xl md:text-start text-center ltr:sm:text-left rtl:sm:text-right">
           <h1 className="text-3xl font-extrabold text-gray-400 sm:text-5xl">
             Descubre la moda que
             <strong className="block font-extrabold text-gray-400">
@@ -25,14 +25,14 @@ function BannerProduct() {
           <div className="mt-8 flex flex-wrap gap-4 text-center">
             <Link
               href="/category/search-results"
-              className="block w-full rounded bg-gray-700 px-12 py-3 text-sm font-medium text-gray-300 shadow hover:bg-gray-800 focus:outline-none focus:ring active:bg-gray-800 sm:w-auto"
+              className="block w-[250px] m-auto  rounded bg-gray-700 px-12 py-3 text-sm font-medium text-gray-300 shadow hover:bg-gray-800 focus:outline-none focus:ring active:bg-gray-800 "
               >
               Comprar
             </Link>
 
             <Link
               href="/about"
-              className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-gray-500 shadow hover:text-black focus:outline-none focus:ring active:text-black sm:w-auto"
+              className="block  rounded bg-white px-12 py-3 text-sm font-medium text-gray-500 shadow hover:text-black focus:outline-none focus:ring active:text-black w-[250px] m-auto"
             >
               Más información
             </Link>

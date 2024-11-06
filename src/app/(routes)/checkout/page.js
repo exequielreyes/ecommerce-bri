@@ -17,7 +17,7 @@ initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_PUBLIC_KEY, {
 });
 
 const CheckoutPage = () => {
-  const { cart, removeAll } = useContext(CartContext);
+  const { cart, removeAll, clearCart } = useContext(CartContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingMercadoPago, setIsLoadingMercadoPago] = useState(false);
   const [preferenceId, setPreferenceId] = useState(null);
@@ -79,6 +79,8 @@ const handleStripePayment = async () => {
 
       if (error) {
         console.error("Error en Stripe Checkout", error);
+      } else{
+        clearCart()
       }
     } catch (error) {
       console.error("Error al redirigir a Stripe Checkout", error);
@@ -161,7 +163,7 @@ const createPreference = async () => {
       const finalPrice = price - discountAmount;
 
       return {
-        title: item.attributes.name,
+        title: item.attributes.productName,
         quantity: item.quantity,
         price: finalPrice, // Usar el precio final aquí
         image: item.attributes.images.data[0].attributes.url

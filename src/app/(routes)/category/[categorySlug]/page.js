@@ -100,7 +100,7 @@ const handleCloseModal = () => {
       <hr className='mb-3 dark:bg-[#b4b4b43a]' />
 
       <div className="flex flex-col sm:flex-row gap-6">
-        <div className="flex-shrink-0 sm:w-1/4 sticky top-20 "
+        <div className="flex-shrink-0 sm:w-1/4 sticky top-20  "
           style={{ alignSelf: 'flex-start' }}
         >
 
@@ -157,8 +157,8 @@ const handleCloseModal = () => {
                 variant={currentPage === index + 1 ? "contained" : "outlined"}
                 onClick={() => handlePageChange(index + 1)}
                 className={`w-8 h-8 text-sm font-semibold  transition duration-150 flex items-center justify-center ${currentPage === index + 1
-                    ? "bg-gradient-to-tr from-purple-600 to-blue-300 text-white shadow-lg"
-                    : "border border-purple-300 text-purple-700 hover:bg-purple-50"
+                  ? "bg-[#3B82F6] text-white shadow-lg" // Fondo activo
+                  : "border border-[#3B82F6] text-[#3B82F6] hover:bg-blue-100" // Fondo inactivo
                   }`}
               >
                 {index + 1}

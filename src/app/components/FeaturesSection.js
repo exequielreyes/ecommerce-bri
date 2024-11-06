@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function FeaturesSection() {
   return (
-    <div className="flex flex-col md:flex-row justify-around items-center w-full py-10 mt-20 space-y-10 md:space-y-0">
+    <div className="flex flex-col md:flex-row justify-around items-center w-full py-10 mt-20 space-y-10 md:space-y-0 dark:text-[#B4B4B4]">
       {/* Primer bloque */}
       <div className="flex flex-col items-center max-w-xs text-center">
         <Image

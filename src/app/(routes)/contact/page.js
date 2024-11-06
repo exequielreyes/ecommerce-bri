@@ -10,7 +10,7 @@ function ContactPage() {
   if (state.succeeded) {
     return (
       <div className="text-center py-12">
-        <p className="mb-8 text-lg text-gray-700 dark:text-gray-300">
+        <p className="mb-8 text-lg text-gray-700 dark:text-[#B4B4B4]">
           Gracias por comunicarte con nosotros. Te responderemos pronto.
         </p>
         <Image
@@ -25,17 +25,17 @@ function ContactPage() {
   }
 
   return (
-    <section className="py-10 bg-white dark:bg-gray-900 flex justify-center items-center">
+    <section className="py-10 bg-white dark:bg-[#0a0a0a] flex justify-center items-center ">
       <div className="w-full max-w-3xl mx-4">
-        <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 text-center">
+        <h2 className="text-3xl font-semibold text-gray-800 dark:text-[#B4B4B4] text-center">
           Contáctanos
         </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mt-3 text-center">
+        <p className="text-xl text-gray-600 dark:text-[#B4B4B4] mt-3 text-center">
           No dude en hacernos llegar sus consultas o sugerencias a través del
           siguiente formulario.
         </p>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-[#19191A] rounded-lg shadow-lg p-8 mt-6 border border-gray-200 dark:border-gray-700">
           <form
             onSubmit={handleSubmit}
             className="space-y-6"
@@ -44,7 +44,7 @@ function ContactPage() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-700 dark:text-[#B4B4B4]"
               >
                 Nombre
               </label>
@@ -63,7 +63,7 @@ function ContactPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-700 dark:text-[#B4B4B4]"
               >
                 Email
               </label>
@@ -86,7 +86,7 @@ function ContactPage() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-700 dark:text-[#B4B4B4]"
               >
                 Mensaje
               </label>
@@ -109,7 +109,7 @@ function ContactPage() {
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="inline-block bg-[#3B82F6] text-white font-semibold py-3 px-6 rounded-lg text-sm hover:bg-[#3B82F6]/80 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] dark:bg-[#3B82F6] dark:hover:bg-[#3B82F6]/80"
+                className="inline-block bg-[#3B82F6] text-white  font-semibold py-3 px-6 rounded-lg text-sm hover:bg-[#3B82F6]/80 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] dark:bg-[#3B82F6] dark:hover:bg-[#3B82F6]/80"
               >
                 {state.submitting ? "Enviando..." : "Enviar"}
               </button>

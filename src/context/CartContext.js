@@ -130,12 +130,20 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: 'UPDATE_SIZE', payload: { id: productId, oldSize, newSize } });
   };
 
-  const removeAll = () => {
+  // const removeAll = () => {
+  //   dispatch({ type: 'REMOVE_ALL' });
+  // };
+  const clearCart = () => {
     dispatch({ type: 'REMOVE_ALL' });
+    localStorage.removeItem('cart'); // Limpia también `localStorage` para asegurarte de que el carrito esté vacío
   };
 
+
+
+  
+  // removeAll este va en el value
   return (
-    <CartContext.Provider value={{ cart: state.cart, addToCart, removeFromCart, updateQuantity, updateSize ,removeAll }}>
+    <CartContext.Provider value={{ cart: state.cart, addToCart, removeFromCart, updateQuantity, updateSize, clearCart }}>
       {children}
     </CartContext.Provider>
   );

@@ -102,8 +102,8 @@ const handleCloseModal = () => {
   };
 
   return (
-    <div className='mt-10'>
-      <h2 className='text-3xl mb-5 text-center font-bold sm:pb-3'>Productos destacados</h2>
+    <div className='mt-10 xl:px-52 lg:px-24 md:px-10 sm:px-12 py-8  flex flex-col items-center '>
+      <h2 className='md:text-3xl  sm:text-2xl text-xl mb-5 text-center font-bold sm:pb-3 dark:text-[#B4B4B4]'>Productos destacados</h2>
 
       <div className="relative">
         <Carousel
@@ -116,7 +116,7 @@ const handleCloseModal = () => {
         <CarouselContent>
 
        
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className={`grid gap-5 ${itemsToShow === 1 ? 'grid-cols-1' : itemsToShow === 2 ? 'grid-cols-2' : itemsToShow === 3 ? 'grid-cols-3' : 'grid-cols-4'}`}>
           {loading
             ? Array(itemsToShow)
                 .fill()

@@ -133,19 +133,19 @@ function Header() {
             <DropdownMenuTrigger asChild>
               <h2
                 className='hidden md:flex gap-2 items-center border 
-                            rounded-full p-2 px-10 bg-slate-200 cursor-pointer dark:bg-[#19191A]'
+                            rounded-full p-2 px-10 bg-slate-200 cursor-pointer dark:bg-[#19191A] dark:text-[#B4B4B4]'
               >
                 <LayoutGrid className='h-5 w-5' /> Categorias
               </h2>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <Link href="/category/search-results">
-              <DropdownMenuLabel className="text-base hover:bg-gray-100">Todas las categorias</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-base hover:bg-gray-100 dark:text-[#B4B4B4]">Todas las categorias</DropdownMenuLabel>
               </Link>
               <DropdownMenuSeparator />
               {categoryList.map((category, index) => (
 
-                <DropdownMenuItem key={index} className="text-base hover:bg-gray-100 "  >
+                <DropdownMenuItem key={index} className="text-base hover:bg-gray-100  dark:text-[#B4B4B4]"  >
                   <Link href={`/category/${category.attributes.slug}`} className='w-full '>
                     <h2>{category.attributes.categoryName}</h2>
                   </Link>
@@ -155,7 +155,7 @@ function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <div className='flex gap-5 items-center '>
+        <div className='flex gap-5 items-center  '>
           <div className='relative flex items-center'>
 
             {isSearchOpen && (
@@ -171,7 +171,7 @@ function Header() {
             {/* Icono de búsqueda solo aparece cuando no está abierta la barra */}
             {!isSearchOpen && (
               <SearchIcon
-                className="cursor-pointer dark:text-white"
+                className="cursor-pointer dark:text-[#B4B4B4]"
                 onClick={toggleSearch}
               />
             )}
@@ -185,7 +185,7 @@ function Header() {
               className="text-black flex items-center cursor-pointer"
               onClick={handleCartClick}
             >
-              <ShoppingCart className='dark:text-white' />
+              <ShoppingCart className='dark:text-[#B4B4B4]' />
               {cart.length > 0 && (
                 <span className="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 text-white bg-[#3B82F6] rounded-full text-xs font-semibold">{cart.length}</span>
               )}
@@ -220,7 +220,7 @@ function Header() {
                   }}
                 >
                   <Heart
-                    className={` ${lovedItems.length > 0 ? 'fill-black dark:fill-white' : 'dark:text-white'}`}
+                    className={` ${lovedItems.length > 0 ? 'fill-black dark:fill-white' : 'dark:text-[#B4B4B4]'}`}
                   />
                   {lovedItems.length > 0 && (
                     <span className="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 text-white bg-[#3B82F6] rounded-full text-xs font-semibold">
@@ -237,7 +237,7 @@ function Header() {
             <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='mt-1'>
               <Link href="/dashboard">
 
-                <UserButton className="dark:text-white text-black" />
+                <UserButton className="dark:text-[#B4B4B4] text-black" />
 
               </Link>
               {isModalOpen && (

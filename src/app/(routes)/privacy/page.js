@@ -4,7 +4,7 @@ import Head from "next/head";
 
 const SecurityPolicies = () => {
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 p-6">
+    <div className="bg-gray-100 dark:bg-[#0a0a0a] p-6">
     <Head>
       <title>Políticas de Seguridad</title>
       <meta
@@ -12,32 +12,32 @@ const SecurityPolicies = () => {
         content="Políticas de seguridad de nuestra empresa."
       />
     </Head>
-    <main className="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
+    <main className="max-w-4xl mx-auto bg-white dark:bg-[#19191A] p-8 rounded-lg shadow-lg ">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-[#B4B4B4]">
         Políticas de Seguridad
       </h1>
-      <section className="mb-6">
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
+      <section className="mb-6 ">
+        <p className="text-gray-600 dark:text-[#B4B4B4] mb-4">
           La Ley de Protección de los Datos Personales (Ley N° 25.326) es una
           norma de orden público que regula la actividad de las bases de datos
           que registran información de carácter personal. Su objeto es
           garantizar a las personas el control del uso de sus datos
           personales. 
         </p>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-gray-600 dark:text-[#B4B4B4] mb-4">
           El titular de los datos personales tiene la facultad de
           ejercer el derecho de acceso a los mismos en forma gratuita a
           intervalos no inferiores a seis meses, salvo que se acredite un
           interés legítimo al efecto conforme lo establecido en el artículo
           14, inciso 3 de la Ley Nº 25.326.
         </p>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-gray-600 dark:text-[#B4B4B4] mb-4">
           La DIRECCIÓN NACIONAL DE PROTECCIÓN DE DATOS PERSONALES, Órgano de
           Control de la Ley Nº 25.326, tiene la atribución de atender las
           denuncias y reclamos que se interpongan con relación al
           incumplimiento de las normas sobre protección de datos personales.
         </p>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-gray-600 dark:text-[#B4B4B4]">
           Indumentaria Brix ha adoptado los niveles de seguridad de protección de los
           Datos Personales legalmente requeridos, y ha instalado todos los
           medios y medidas técnicas a su alcance para evitar la pérdida, mal
@@ -45,27 +45,27 @@ const SecurityPolicies = () => {
           facilitados.
         </p>
 
-        <h2 className="text-3xl font-bold mt-10 text-gray-800 dark:text-white">
+        <h2 className="text-3xl font-bold mt-10 text-gray-800 dark:text-[#B4B4B4]">
           Política de Devoluciones
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-          <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 ">
+          <div className="border p-4 rounded-lg bg-gray-100 dark:bg-[#19191A]">
             <h3 className="font-bold text-lg text-gray-800 dark:text-white">Tiempo de cobertura</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              <strong className="text-black" >Nuevos</strong><br />
+              <strong className="text-black dark:text-white" >Nuevos</strong><br />
               Tienes 30 días corridos para devolverlo desde que te llegó.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              <strong className="text-black">Usados</strong><br />
+              <strong className="text-black dark:text-white ">Usados</strong><br />
               Tienes 10 días corridos para devolverlo desde que te llegó.
             </p>
           </div>
 
-          <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-700">
+          <div className="border p-4 rounded-lg bg-gray-100 dark:bg-[#19191A]">
             <h3 className="font-bold text-lg text-gray-800 dark:text-white">Condiciones del producto</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              <strong className="text-black">
+              <strong className="text-black dark:text-white">
               Si te arrepentiste de comprar el producto o es diferente de lo que pediste:
               </strong>
             </p>
@@ -78,7 +78,7 @@ const SecurityPolicies = () => {
               </li> */}
             </ul>
             <p className="text-gray-600 dark:text-gray-300 mt-4">
-            <strong className="text-black">
+            <strong className="text-black dark:text-white">
               Si el producto tiene un problema o está incompleto:
               </strong>
             </p>

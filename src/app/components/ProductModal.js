@@ -70,8 +70,8 @@ function ProductModal({ product, isOpen, onClose, addToCart }) {
 
     //   </div>
     // </div>
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-[90%] md:w-[650px] max-h-[80vh] overflow-auto relative">
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 dark:text-[#B4B4B4]">
+      <div className="bg-white dark:bg-[#19191A] rounded-lg p-6 w-[90%] md:w-[650px] max-h-[80vh] overflow-auto relative">
         <div className="flex">
           {/* Imagen del producto */}
           <div className="w-1/2">
@@ -85,7 +85,7 @@ function ProductModal({ product, isOpen, onClose, addToCart }) {
             {/* Cálculo de precios */}
             {product.attributes.discount ? (
               <>
-                <p className="text-gray-500 line-through text-sm">
+                <p className="text-gray-500 line-through text-sm ">
                   {formatPrice(product.attributes.price)}
                 </p>
                 <div className='flex items-center gap-2'>
@@ -101,7 +101,7 @@ function ProductModal({ product, isOpen, onClose, addToCart }) {
                 </div>
               </>
             ) : (
-              <p className="text-lg text-black font-bold">
+              <p className="text-lg text-black font-bold dark:text-[#B4B4B4]">
                 {formatPrice(product.attributes.price)}
               </p>
             )}
@@ -166,7 +166,7 @@ function ProductModal({ product, isOpen, onClose, addToCart }) {
         {/* Cerrar modal */}
         <button
              onClick={onClose}
-            className="absolute top-2 right-3 text-gray-800 hover:text-black text-lg"
+            className="absolute top-2 right-3 text-gray-800 dark:text-[#B4B4B4]  dark:hover:text-white hover:text-black text-lg"
            >
          &#x2715;
          </button>
