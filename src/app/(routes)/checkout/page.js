@@ -4,7 +4,7 @@ import { CartContext } from "@/context/CartContext";
 import { loadStripe } from "@stripe/stripe-js";
 import { makePaymentRequest } from "@/app/api/payment";
 import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
+import { RedirectToSignIn, useUser } from "@clerk/nextjs";
 import GlobalApi from "../../api/GlobalApi"
 import Image from "next/image";
 import { formatPrice } from "../../../../lib/formatPrice";
@@ -26,25 +26,9 @@ const CheckoutPage = () => {
  
 
 
-
-
-  ////esto funciona Función para redirigir a la pasarela de Stripe funcion
-//    const handleStripePayment = async () => {
-//      setIsLoading(true);
-//     try {
-//       const stripe = await stripePromise;
-//       const res = await makePaymentRequest.post("/api/orders", { products: cart });
-//       const { error } = await stripe.redirectToCheckout({ sessionId: res.data.stripeSession.id });
-
-//       if (error) {
-//         console.error("Error en Stripe Checkout", error);
-//       }
-//     } catch (error) {
-//       console.error("Error al redirigir a Stripe Checkout", error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
+  if(!isSignedIn){
+    return <RedirectToSignIn />
+  }
 
 
 const handleStripePayment = async () => {
@@ -222,47 +206,56 @@ const handlePayWithMercadoPago = async () => {
     <div className="max-w-7xl mx-auto p-4">
     <h1 className="text-2xl font-semibold mb-4">Resumen de la compra</h1>
     <div className="space-y-6">
-      {cart.map((item) => {
-        const imageUrl = item.attributes?.images?.data?.[0]?.attributes?.url
-          ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${item.attributes.images.data[0].attributes.url}`
-          : "/default-image.jpg";
+          {cart.map((item) => {
+            const imageUrl = item.attributes?.images?.data?.[0]?.attributes?.url
+              ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${item.attributes.images.data[0].attributes.url}`
+              : "/default-image.jpg";
 
-          // Obtener el precio y el descuento
-          const price = item.attributes.price || 0;
-          const discount = item.attributes.discount || 0;
-          const discountAmount = price * (discount / 100);
-          const finalPrice = price - discountAmount;
+            // Obtener el precio y el descuento
+            const price = item.attributes.price || 0;
+            const discount = item.attributes.discount || 0;
+            const discountAmount = price * (discount / 100);
+            const finalPrice = price - discountAmount;
 
-        return (
-          <div key={item.id} className="flex items-center bg-white rounded-lg shadow-md p-4">
-            <Image
-                src={imageUrl}
-                alt={item.attributes.name || "Producto sin título"}
-                width={80} 
-                height={80} 
-                className="object-contain rounded-md border border-gray-200"
-            />
-            <div className="ml-4 flex flex-col">
-              <p className="text-lg font-semibold">{item.attributes.name}</p>
-              <p className="text-sm">Cantidad: {item.quantity}</p>
-                    <p className="text-sm font-semibold text-gray-700">Precio: {formatPrice(price)}</p>
-                    {discount > 0 && (
-                        <p className="text-sm text-red-500">
-                            Descuento: {formatPrice(discountAmount)} ({discount}%)
-                        </p>
-                    )}
-                    <p className="text-sm font-semibold text-gray-700">Precio Final: {formatPrice(finalPrice)}</p>
-            </div>
-          </div>
-        );
-      })}
+            return (
+              <div key={item.id} className="flex items-center bg-white rounded-lg shadow-md p-4">
+                <Image
+                  src={imageUrl}
+                  alt={item.attributes.name || "Producto sin título"}
+                  width={80}
+                  height={80}
+                  className="object-contain rounded-md border border-gray-200"
+                />
+                <div className="ml-4 flex flex-col">
+                  <p className="text-lg font-semibold">{item.attributes.name}</p>
+                  <p className="text-sm">Cantidad: {item.quantity}</p>
+                  <p className="text-sm font-semibold text-gray-700">Precio: {formatPrice(price)}</p>
+
+                  {/* Mostrar solo si hay descuento */}
+                  {discount > 0 && (
+                    <>
+                      <p className="text-sm text-red-500">
+                        Descuento: {formatPrice(discountAmount)} ({discount}% OFF)
+                      </p>
+                      <p className="text-sm font-semibold text-gray-700">
+                        Precio Final: {formatPrice(finalPrice)}
+                      </p>
+                    </>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+
+
+
     </div>
     <h2 className="mt-12 text-2xl font-semibold mb-4">Metodos de pago</h2>
   </div>
   <div className="max-w-xl mx-auto">
     <button
       onClick={handleStripePayment}
-      className="bg-green-500 text-white py-2 px-4 rounded w-full hover:bg-green-600 transition "
+      className="bg-[#19191A] dark:bg-gray-300 dark:text-black dark:hover:bg-gray-100 text-white py-2 px-4 rounded w-full hover:bg-gray-600 transition "
       disabled={isLoading}
     >
       {isLoading ? "Procesando..." : "Pagar con Stripe"}

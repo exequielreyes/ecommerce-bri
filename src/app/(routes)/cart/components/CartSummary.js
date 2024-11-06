@@ -14,24 +14,24 @@ const CartSummary = ({ total, postalCode, onPostalCodeChange, onPostalCodeSubmit
   
   return(
     <div className="md:w-1/3">
-      <div className="bg-white shadow-lg rounded-lg p-6 space-y-4">
+      <div className="bg-white dark:bg-[#19191A] dark:border dark:border-gray-100 shadow-lg rounded-lg p-6 space-y-4">
         <h4 className="text-xl font-semibold mb-4">RESUMEN DE COMPRA</h4>
         <div className="flex items-center justify-between relative">
-          <p className="text-gray-600 mr-2">Subtotal</p>
+          <p className="text-gray-600 mr-2 dark:text-[#B4B4B4]">Subtotal</p>
           <div className="group relative flex items-center">
             <FaQuestionCircle size={16} className="text-white-500 cursor-pointer hover:text-gray-600" />
             <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex w-64 bg-gray-800 text-white text-xs rounded p-2 shadow-lg z-10">
               El subtotal refleja el importe total de su pedido, no incluye los gastos del envío.
             </div>
           </div>
-          <span className="text-lg font-semibold text-gray-800 ml-auto">{formatPrice(validTotal)}</span>
+          <span className="text-lg font-semibold text-gray-800 ml-auto dark:text-[#B4B4B4]">{formatPrice(validTotal)}</span>
         </div>
 
         
         
         <div className="flex items-center space-x-3 mt-4">
           <div className="flex-grow">
-            <label htmlFor="postalCode" className="text-gray-600 mb-1 block">Calculá el costo de envío</label>
+            <label htmlFor="postalCode" className="text-gray-600 mb-1 block dark:text-[#B4B4B4]">Calculá el costo de envío</label>
             <div className="flex items-center">
               <input
                 type="text"
@@ -53,10 +53,10 @@ const CartSummary = ({ total, postalCode, onPostalCodeChange, onPostalCodeSubmit
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <p className="text-gray-600 mr-2">Costo de envío</p>
-          <span className="text-lg font-semibold text-gray-800 ml-auto">{formatPrice(isFreeShipping ? 0 : shippingCost)}</span>
+          <p className="text-gray-600 mr-2 dark:text-[#B4B4B4]">Costo de envío</p>
+          <span className="text-lg font-semibold text-gray-800 ml-auto dark:text-[#B4B4B4]">{formatPrice(isFreeShipping ? 0 : shippingCost)}</span>
         </div>
-        <p className="text-lg font-semibold text-gray-800">
+        <p className="text-lg font-semibold text-gray-800 dark:text-[#B4B4B4]">
           Total: <span className="font-bold ml-auto text-right">{formatPrice(finalPrice)}</span>
         </p>
         <button 

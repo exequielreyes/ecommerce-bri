@@ -13,6 +13,8 @@ import CartItems from "./components/CartItems";// Asegúrate de tener este compo
 import CartSummary from "./components/CartSummary";// Asegúrate de tener este componente creado
 import ProgressSteps from "./components/ProgressSteps"; // Asegúrate de tener este componente creado
 import { useLovedProducts } from "@/context/UseLovedProducts";
+import { RedirectToSignIn, useAuth } from "@clerk/nextjs";
+
 
 
 const Cart = () => {
@@ -25,30 +27,23 @@ const Cart = () => {
 
   // const handleGoBack = () => router.back();
 
+
+
+
+
+  const { isSignedIn } = useAuth(); 
+  if(!isSignedIn){
+    return <RedirectToSignIn />
+  }
+
+
+
   const handleQuantityChange = (id, size, quantity, availableStock) => {
     if (quantity >= 1 && quantity <= availableStock) {
       updateQuantity(id, size, quantity);
     }
   }
 
-
-
-  // const BuyStripe = async (cart, product = null) => { // Cambia aquí para aceptar el carrito como argumento
-  //   try {
-  //     const stripe = await stripePromise;
-  //     const productsToCheckout = product ? [product] : cart; // Usa el producto si se pasa, de lo contrario usa el carrito
-  //     const res = await makePaymentRequest.post("/api/orders", { products: productsToCheckout });
-  //     const { error } = await stripe.redirectToCheckout({ sessionId: res.data.stripeSession.id });
-  //     if (!error) {
-
-  //       removeAll();
-  //     } else {
-  //       console.error("Error en Stripe Checkout", error)
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al redirigir a Stripe Checkout", error);
-  //   }
-  // };
 
   
   // const calculateTotal = () => cart.reduce((total, product) => total + product.attributes.price * product.quantity, 0);
@@ -110,7 +105,7 @@ const handleCheckout = () => {
             {/* <button onClick={handleGoBack} className="flex items-center text-black hover:text-purple-700">
             <ChevronLeft className="w-6 h-6" /> Regresar
           </button> */}
-            <ol className="flex items-center gap-1 text-sm text-gray-600">
+            <ol className="flex items-center gap-1 text-sm text-gray-600 dark:text-[#B4B4B4]">
               <li>
                 <button onClick={() => router.back()} className="block transition hover:text-blue-500">
                   <span className="sr-only">Home</span>
@@ -146,7 +141,7 @@ const handleCheckout = () => {
                 </svg>
               </li>
               <li>
-                <h1 class="block transition text-black hover:text-gray-700 text-2xl text-center">
+                <h1 class="block transition text-black hover:text-gray-700 text-2xl text-center dark:text-[#B4B4B4]">
                   Mi Carrito <span className="text-sm text-gray-500">({cartItemsCount})</span>
                 </h1>
               </li>

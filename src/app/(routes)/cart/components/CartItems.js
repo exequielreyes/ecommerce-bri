@@ -77,7 +77,7 @@ const CartItems = ({
         return (
           <div
             key={product.id}
-            className="bg-gradient-to-r from-gray-50 to-gray-100 border-gray-200 shadow-md hover:shadow-lg rounded-lg mb-4 p-6 flex items-center justify-between transition-transform transform hover:scale-104 "
+            className="bg-gradient-to-r from-gray-50 dark:from-gray-900 to-gray-100 dark:to-gray-950 border-gray-200  dark:border-gray-800 dark:border shadow-md hover:shadow-lg rounded-lg mb-4 p-6 flex items-center justify-between transition-transform transform hover:scale-104"
           >
             <img
               src={imageUrl}
@@ -85,11 +85,11 @@ const CartItems = ({
               className="w-32 h-32 object-contain rounded-md border border-gray-200"
             />
             <div className="ml-6">
-              <h5 className="text-lg font-semibold mb-2 text-gray-800">
+              <h5 className="text-lg font-semibold mb-2 text-gray-800 dark:text-[#B4B4B4]">
                 {product.attributes?.productName || "Nombre no disponible"}
               </h5>
-              <div className="flex space-x-4 mb-2 bg-gray-200 p-2 rounded-full w-auto">
-                <p className="text-sm font-semibold">
+              <div className="flex space-x-4 mb-2 bg-gray-200  dark:bg-gray-500 p-2 rounded-full w-auto">
+                <p className="text-sm font-semibold ">
                   Color: {product.attributes?.color || "No disponible"}
                 </p>
                 <p className="text-sm font-semibold">
@@ -100,12 +100,12 @@ const CartItems = ({
               {/* Cálculo del precio final y descuento */}
               <div className="flex flex-col">
                 {discount > 0 && (
-                  <p className="text-sm font-semibold text-gray-500 line-through">
+                  <p className="text-sm font-semibold text-gray-500 dark:text-[#b4b4b4b0] line-through">
                     {formatPrice(price)}
                   </p>
                 )}
                 <div className="flex items-center">
-                  <p className="text-lg font-semibold text-black">
+                  <p className="text-lg font-semibold text-black dark:text-[#B4B4B4]">
                     ARS{formatPrice(finalPrice * product.quantity)}
                   </p>
                   {discount > 0 && (
@@ -117,13 +117,13 @@ const CartItems = ({
               <div className="flex space-x-4">
                 <button
                   onClick={() => BuyStripe(product)}
-                  className="bg-transparent text-black py-2 rounded hover:text-green-600 transition-colors duration-300"
+                  className="bg-transparent text-black dark:text-[#B4B4B4] dark:hover:text-green-300 py-2 rounded hover:text-green-600 transition-colors duration-300"
                 >
                   Comprar ahora
                 </button>
                 <button
                   onClick={() => handleOpen(product)}
-                  className="bg-transparent text-black px-4 py-2 rounded hover:text-blue-600 transition-colors duration-300"
+                  className="bg-transparent text-black dark:text-[#B4B4B4] dark:hover:text-blue-300 px-4 py-2 rounded hover:text-blue-600 transition-colors duration-300"
                 >
                   Modificar
                 </button>
@@ -152,7 +152,7 @@ const CartItems = ({
             />
             <div className="ml-6 flex flex-col space-y-4 items-center">
               <IconButton
-                className="text-gray-600 hover:text-red-500 transition-colors"
+                className="text-gray-600 dark:text-[#B4B4B4] dark:hover:text-red-500 hover:text-red-500 transition-colors"
                 onClick={() =>
                   removeFromCart({ id: product.id, size: product.size })
                 }
@@ -160,7 +160,7 @@ const CartItems = ({
                 <FaTrash size={20} />
               </IconButton>
               <IconButton
-                className="text-gray-600 hover:text-pink-500 transition-colors"
+                className="text-gray-600 dark:text-[#B4B4B4] dark:hover:text-pink-500 hover:text-pink-500 transition-colors"
                 onClick={() => addLoveItem(product)}
               >
                 <FaHeart size={20} />
@@ -170,10 +170,10 @@ const CartItems = ({
         );
       })}
       {/* Modal para modificar producto */}
-      <Modal open={open} onClose={handleClose}>
-        <Box className="w-1/3 mx-auto mt-20 bg-white p-6 rounded-lg shadow-lg flex">
+      <Modal open={open} onClose={handleClose} className="dark:bg-[#19191a70]">
+        <Box className="w-1/3 mx-auto mt-20 bg-white  p-6 rounded-lg shadow-lg  dark:bg-[#19191A]  flex">
           {/* Sección izquierda con fondo gris */}
-          <div className="flex-none bg-gray-200 p-4 rounded-l-lg">
+          <div className="flex-none bg-gray-200 p-4 rounded-l-lg dark:bg-[#19191A] ">
             <Image
               src={
                 selectedProduct?.attributes?.images?.data?.[0]?.attributes?.url
@@ -185,7 +185,7 @@ const CartItems = ({
               height={250}
               className="object-contain rounded-md border border-gray-300 mb-2"
             />
-            <h5 className="text-lg font-semibold mb-1 text-gray-800">
+            <h5 className="text-lg font-semibold mb-1 text-gray-800 dark:text-[#B4B4B4]">
               {selectedProduct?.attributes?.productName ||
                 "Nombre no disponible"}
             </h5>
@@ -202,16 +202,18 @@ const CartItems = ({
 
                   return (
                     <div className="flex flex-col">
-                      <p className="text-sm font-semibold text-gray-500 line-through">
-                        {formatPrice(price)}
-                      </p>
+                      {discount > 0 && (
+                        <p className="text-sm font-semibold text-gray-500 dark:text-[#b4b4b480] line-through">
+                          {formatPrice(price)}
+                        </p>
+                      )}
                       <div className="flex items-center">
-                        <p className="text-lg font-semibold text-black">
+                        <p className="text-lg font-semibold text-black dark:text-[#B4B4B4]">
                           {formatPrice(finalPrice)}
                         </p>
                         {discount > 0 && (
                           <p className="text-sm text-red-600 ml-2">
-                            ({discount}% de descuento)
+                            ({discount}% OFF)
                           </p>
                         )}
                       </div>
@@ -223,20 +225,21 @@ const CartItems = ({
           </div>
 
           {/* Sección derecha con fondo blanco */}
-          <div className="flex-grow bg-white p-4 rounded-r-lg relative">
+          <div className="flex-grow bg-white  dark:bg-[#19191A] p-4 rounded-r-lg relative">
             <IconButton
-              className="absolute top-[-1.5rem] right-[-1.5rem]"
+              className="absolute top-[-2.5rem] right-[-17.3rem] dark:text-[#B4B4B4]"
               onClick={handleClose}
             >
               <FaTimes />
             </IconButton>
-            <div className="mb-4">
-              <FormControl fullWidth>
-                <InputLabel id="size-label">Talle</InputLabel>
+            <div className="mb-4 ">
+              <FormControl fullWidth >
+                <InputLabel id="size-label" className="-m-3 dark:text-[#B4B4B4]">Talle</InputLabel>
                 <Select
                   labelId="size-label"
                   value={newSize}
                   onChange={(e) => setNewSize(e.target.value)}
+                  className="dark:text-[#B4B4B4] "
                 >
                   {Array.isArray(selectedProduct?.attributes?.sizes?.data) &&
                   selectedProduct.attributes.sizes.data.length > 0 ? (

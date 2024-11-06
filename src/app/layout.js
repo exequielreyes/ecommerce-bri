@@ -1,10 +1,7 @@
 "use client";
-
-
- import { Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-// import localFont from 'next/font/local';
 import Head from "next/head";
 import { CartProvider } from "@/context/CartContext";
 import { UseLovedProductsProvider } from "@/context/UseLovedProducts";
@@ -18,8 +15,8 @@ import {
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/theme-provider";
-// import ChatBotButton from "./components/ChatBotButton";
-import MainChatBot from "./components/MainChatBot"
+ import ChatBotButton from "./components/ChatBotButton";
+// import MainChatBot from "./components/MainChatBot"
 
 
 
@@ -52,8 +49,8 @@ export default function RootLayout({ children, title }) {
             </UseLovedProductsProvider>
           </CartProvider>
           </ThemeProvider>
-          {/* <ChatBotButton /> */}
-          <MainChatBot />
+           <ChatBotButton /> 
+          {/* <MainChatBot /> */}
         </body>
       </html>
     </ClerkProvider>

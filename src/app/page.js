@@ -6,10 +6,11 @@ import Slider from "./components/Slider";
 import BrandList from "./components/BrandList";
 import CategoryList from "./components/CategoryList";
 import FeaturesSection from "./components/FeaturesSection";
-// import ChatBotButton from "./components/ChatBotButton";
-import MainChatBot from "./components/MainChatBot";
+ import ChatBotButton from "./components/ChatBotButton";
+// import MainChatBot from "./components/MainChatBot";
 
 import ScrollButton from "./components/ScrollButton";
+
 
 export default async function Home() {
   const sliderList = await GlobalApi.getSliders();
@@ -54,8 +55,8 @@ export default async function Home() {
 
 
       {/* ChatBot*/}
-      <MainChatBot />
-        {/* <ChatBotButton /> */}
+      {/* <MainChatBot /> */}
+         <ChatBotButton />
       
     </>
   );

@@ -1,18 +1,18 @@
 const { FaMinus, FaPlus } = require("react-icons/fa");
 
 const QuantitySelector = ({ quantity, onIncrease, onDecrease, availableStock }) => (
-    <div className="ml-auto mr-9 flex flex-col items-center space-x-2">
-        <p className="text-sm font-semibold text-gray-700">Quiero:</p>
+    <div className="ml-auto mr-9 flex flex-col items-center space-x-2 ">
+        <p className="text-sm font-semibold text-gray-700 dark:text-[#B4B4B4]">Quiero:</p>
         <div className="flex items-center space-x-2 border p-2 rounded-full">
       <button 
-      className="w-6 h-6 border border-black rounded-full flex items-center justify-center text-black hover:bg-gray-200 transition-colors" onClick={onDecrease}>
+      className="w-6 h-6 border border-black dark:border-white  dark:text-white rounded-full flex items-center justify-center text-black hover:bg-gray-200  dark:hover:bg-gray-600 transition-colors" onClick={onDecrease}>
         <FaMinus size={10} 
         
         />
       </button>
-      <span className="text-sm font-semibold text-gray-700">{quantity}</span>
+      <span className="text-sm font-semibold text-gray-700 dark:text-[#B4B4B4]">{quantity}</span>
       <button 
-     className={`w-6 h-6 border border-black rounded-full flex items-center justify-center text-black hover:bg-gray-200 transition-colors ${quantity >= availableStock ? 'opacity-50 cursor-not-allowed' : ''}`}
+     className={`w-6 h-6 border border-black dark:border-white rounded-full flex items-center justify-center text-black dark:text-white dark:hover:bg-gray-600 hover:bg-gray-200 transition-colors ${quantity >= availableStock ? 'opacity-50 cursor-not-allowed' : ''}`}
      onClick={quantity < availableStock ? onIncrease : null}
      disabled={quantity >= availableStock}
       >
@@ -20,7 +20,7 @@ const QuantitySelector = ({ quantity, onIncrease, onDecrease, availableStock }) 
       </button>
       </div>
       {/* Texto "Disponible:" debajo de los botones */}
-    <p className="text-xs text-gray-600 mt-2">Disponible: {availableStock} unidades</p>
+    <p className="text-xs text-gray-600 mt-2 dark:text-[#B4B4B4]">Disponible: {availableStock} unidades</p>
     </div>
   );
 

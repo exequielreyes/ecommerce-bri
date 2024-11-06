@@ -220,7 +220,7 @@ const InfoProduct = ({ product }) => {
 
           {/* Botón de Guía de talles */}
           <Button
-            variant="outlined"
+            // variant="outlined"
             startIcon={<Ruler />}
             sx={{ mt: 1, mb:1, fontSize:'11px' }}
             onClick={handleOpenModal}
@@ -247,19 +247,18 @@ const InfoProduct = ({ product }) => {
                 onClick={decrementQuantity}
                 disabled={quantity <= 1}
                 sx={{
-                  backgroundColor: "#000000", // Cambia el color de fondo según tus preferencias
+                  backgroundColor: "#000000", 
                   color: "#ffffff",
-                  borderRadius: "20px", // Para bordes redondeados
-                  minWidth: "30px", // Ancho mínimo
-                  height: "30px", // Altura para el botón
-                  padding: "0", // Eliminar el padding
+                  borderRadius: "20px",
+                  minWidth: "30px", 
+                  padding: "0", 
                   "&:hover": {
-                    backgroundColor: "#232121", // Color de fondo al pasar el mouse
+                    backgroundColor: "#232121",
                   },
                   ...(quantity <= 1 && {
                     backgroundColor: "#ccc",
                     color: "#fff",
-                  }), // Cambia el fondo a gris y texto a blanco si está deshabilitado
+                  }), 
                 }}
               >
                 -
@@ -269,14 +268,14 @@ const InfoProduct = ({ product }) => {
                 onClick={incrementQuantity}
                 disabled={quantity >= availableStock}
                 sx={{
-                  backgroundColor: "#000000", // Cambia el color de fondo según tus preferencias
+                  backgroundColor: "#000000", 
                   color: "#ffffff",
-                  borderRadius: "20px", // Para bordes redondeados
-                  minWidth: "30px", // Ancho mínimo
-                  height: "30px", // Altura para el botón
-                  padding: "0", // Eliminar el padding
+                  borderRadius: "20px", 
+                  minWidth: "30px", 
+                  height: "30px", 
+                  padding: "0", 
                   "&:hover": {
-                    backgroundColor: "#232121", // Color de fondo al pasar el mouse
+                    backgroundColor: "#232121", 
                   },
                   ...(quantity >= availableStock && {
                     backgroundColor: "#ccc",
@@ -295,19 +294,19 @@ const InfoProduct = ({ product }) => {
       </div>
 
       {/* Botones de "Añadir al carrito" y "Comprar" */}
-      <Box sx={{ display: "flex", gap: 4 }}  className="p-6 md:p-0" >
+      <Box sx={{ display: "flex", gap: 4 }}   >
         <Button
           variant={added ? "contained" : "outlined"}
           color={added ? "success" : "primary"}
           onClick={handleAddToCart}
           disabled={added || availableStock <= 0}
           startIcon={<ShoppingCart />}
-          sx={{ flexGrow: 1 }}
+          // sx={{ flexGrow: 1 }}
         >
           {added ? "Añadido" : "Añadir al carrito"}
         </Button>
 
-        <Button
+        {/* <Button
           variant="contained"
           color="secondary"
           onClick={handleBuyNow}
@@ -315,7 +314,7 @@ const InfoProduct = ({ product }) => {
           disabled={availableStock <= 0}
         >
           Comprar
-        </Button>
+        </Button> */}
       </Box>
 
       {/* MercadoPago Wallet */}

@@ -9,6 +9,8 @@ import { useContext, useState } from "react";
 import ProductModal from '@/app/components/ProductModal';
 
 import { CartContext } from '@/context/CartContext';
+import Head from 'next/head';
+import { useEffect } from 'react';
 
 export default function Page() {
   const params = useParams();
@@ -20,6 +22,7 @@ export default function Page() {
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedGender, setSelectedGender] = useState([]);
 
+  
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,6 +46,10 @@ const handleCloseModal = () => {
   setSelectedProduct(null);
   setIsModalOpen(false);
 };
+
+
+
+
 
 
 
@@ -90,7 +97,19 @@ const handleCloseModal = () => {
   };
   const uniqueBrands = getUniqueBrands(result); // Obtener marcas únicas
 
+  const categoryName = result && result.length > 0
+  ? result[0]?.attributes?.category?.data?.attributes?.categoryName
+  : "Categoría no disponible";
+
+  useEffect(() => {
+    document.title = `  ${categoryName} | IndumentaryBrix `;
+  }, [categoryName]);
+
   return (
+    <>
+    <Head>
+        <title>{categoryName}</title>
+      </Head>
     <div className="max-w-7xl pb-16 mx-auto ">
       {!loading && result && result.length > 0 && (
         <h1 className="text-[32px] mb-4 dark:text-[#B4B4B4]">
@@ -176,5 +195,6 @@ const handleCloseModal = () => {
         addToCart={addToCart}
       />
     </div>
+    </>
   );
 }

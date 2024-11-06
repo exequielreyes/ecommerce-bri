@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import ProductModal from "@/app/components/ProductModal";
 import { useContext, useState } from "react";
 import { CartContext } from "@/context/CartContext";
+import { useEffect } from "react";
+import { RedirectToSignIn, useAuth } from "@clerk/nextjs";
 
 function Page() {
   const { lovedItems } = useLovedProducts();
@@ -14,6 +16,14 @@ function Page() {
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
+  const { isSignedIn } = useAuth(); 
+
+if(!isSignedIn){
+  return <RedirectToSignIn />
+}
 
   // Función para abrir el modal y seleccionar un producto
   const handleAddToCartClick = (product) => {

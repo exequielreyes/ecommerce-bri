@@ -10,7 +10,7 @@ import { useTheme } from "next-themes";
 
 
 
-export default function MainChatBot() {
+export default function MainChatBot({onClose}) {
   
   const { user } = useUser(); 
   const router = useRouter()
@@ -56,17 +56,17 @@ export default function MainChatBot() {
       <div className="relative ">
         
         <ThemeProvider theme={DiseñoChat}>
-       {/* <button 
+       <button 
           onClick={onClose} 
-          className=" absolute top-[0.45rem] -right-[0.70rem]  text-white hover:text-black p-2 rounded-full z-[1000]" // Estilos para el botón de cerrar
+          className=" absolute top-[-1.2rem] right-[1.2rem]  text-white hover:text-black p-2 rounded-full z-[1000]" // Estilos para el botón de cerrar
         >
           <X />
-        </button> */}
+        </button>
           <ChatBot
             headerTitle="BrixBot"
             userAvatar={userProfileImage} 
             placeholder={"Escribe el mensaje"}
-            floating={true}
+            // floating={true}
             width={'450px'}
             // height={'500px'}
             //  speechSynthesis={{enable: true}}
